@@ -35,3 +35,6 @@ def registration(request):
     context = {'form': form}
     return render(request, 'users/registration.html', context)
 
+def profile(request):
+    context = {'title': 'Profile'}
+    return render(request, 'users/profile.html', context)
