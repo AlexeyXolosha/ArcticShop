@@ -1,5 +1,5 @@
-
 from django.db import models
+
 
 # Create your models here.
 # models = таблица
@@ -11,6 +11,7 @@ class ProductCategory(models.Model):
     def __str__(self):
         return self.name
 
+
 class Product(models.Model):
     name = models.CharField(max_length=256, unique=True)
     description = models.TextField()
@@ -21,5 +22,3 @@ class Product(models.Model):
 
     def __str__(self):
         return f'Продукт: {self.name} | Категория {self.category.name}'
-
-
