@@ -5,6 +5,9 @@ from django.urls import reverse
 from users.models import User
 from users.forms import UserLoginForm, UserRegistrationForm, UserProfileForm
 
+from products.models import Basket
+
+
 # Create your views here.
 
 def login(request):
@@ -22,6 +25,7 @@ def login(request):
     context = {'form': form}
     return render(request, 'users/login.html', context)
 
+
 def registration(request):
     if request.method == "POST":
         form = UserRegistrationForm(data=request.POST)
@@ -36,17 +40,19 @@ def registration(request):
     context = {'form': form}
     return render(request, 'users/registration.html', context)
 
+
 def profile(request):
     if request.method == "POST":
-        form = UserProfileForm(instance=request.user ,data=request.POST, files=request.FILES)
+        form = UserProfileForm(instance=request.user, data=request.POST, files=request.FILES)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('users:profile'))
         else:
             print(form.errors)
     form = UserProfileForm(instance=request.user)
-    context = {'title': 'Store - Профиль', 'form': form}
+    context = {'title': 'Store - Профиль', 'form': form, 'baskets': Basket.objects.filter(user=request.user)}
     return render(request, 'users/profile.html', context)
+
 
 def logout(request):
     auth.logout(request)
