@@ -1,8 +1,10 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from unicodedata import category
 
 from products.models import ProductCategory, Product, Basket
 from users.models import User
+
 
 def index(request):
     context = {
@@ -10,13 +12,15 @@ def index(request):
     }
     return render(request, 'products/index.html', context)
 
-def products(request):
+
+def products(request, category_id=None):
     context = {
         'title': 'Store-Каталог',
-        'products': Product.objects.all(),
-        'category': ProductCategory.objects.all()
+        'category': ProductCategory.objects.all(),
+        'products': Product.objects.filter(category_id=category_id) if category_id else Product.objects.all(),
     }
     return render(request, 'products/products.html', context)
+
 
 @login_required
 def basket_add(request, product_id):
@@ -33,6 +37,7 @@ def basket_add(request, product_id):
 
         ### Возвращаем пользователя на ту же страницу где он и был при добавлении товара, или же при его увелечении
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
 
 @login_required
 def basket_remove(request, basket_id):
