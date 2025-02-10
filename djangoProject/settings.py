@@ -136,6 +136,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # USERS
 
 AUTH_USER_MODEL = 'users.User'
+LOGIN_URL = '/users/login/'
 
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
