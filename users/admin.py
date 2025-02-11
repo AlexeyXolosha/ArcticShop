@@ -9,3 +9,4 @@ from products.admin import BasketAdmin
 class UserAdmin(admin.ModelAdmin):
     list_display = ('username', 'email')
     inlines = (BasketAdmin,)
+
