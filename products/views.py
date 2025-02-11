@@ -1,17 +1,14 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from unicodedata import category
+from django.views.generic.base import TemplateView
 
 from products.models import ProductCategory, Product, Basket
 from django.core.paginator import Paginator
 
 
-def index(request):
-    context = {
-        'title': 'Store'
-    }
-    return render(request, 'products/index.html', context)
 
+class IndexView(TemplateView):
+    template_name = 'products/index.html'
 
 def products(request, category_id=None, page_num=1):
     products = Product.objects.filter(category_id=category_id) if category_id else Product.objects.all()
