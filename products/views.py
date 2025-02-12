@@ -4,7 +4,6 @@ from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 
 from products.models import ProductCategory, Product, Basket
-from django.core.paginator import Paginator
 
 
 
@@ -32,22 +31,6 @@ class ProductsListView(ListView):
         context['category'] = ProductCategory.objects.all()
         return context
 
-
-# def products(request, category_id=None, page_num=1):
-#     products = Product.objects.filter(category_id=category_id) if category_id else Product.objects.all()
-#
-#     per_page = 2
-#     paginator = Paginator(products, per_page)
-#     products_paginator = paginator.page(page_num)
-#
-#     context = {
-#         'title': '',
-#         'category': ProductCategory.objects.all(),
-#         'products': products_paginator,
-#     }
-#     return render(request, 'products/products.html', context)
-
-
 @login_required
 def basket_add(request, product_id):
     product = Product.objects.get(id=product_id)
@@ -63,7 +46,6 @@ def basket_add(request, product_id):
 
         ### Возвращаем пользователя на ту же страницу где он и был при добавлении товара, или же при его увелечении
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
-
 
 @login_required
 def basket_remove(request, basket_id):
