@@ -142,3 +142,7 @@ LOGOUT_REDIRECT_URL = '/'
 
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
+
+# Sending emails
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

@@ -23,6 +23,8 @@ class UserRegistrationView(TitleMixin,SuccessMessageMixin, CreateView):
     success_url =  reverse_lazy('users:login')
     title = 'Store - Регистрация'
 
+
+
 class UserProfileView(TitleMixin, UpdateView):
     model = User
     form_class = UserProfileForm
@@ -36,5 +38,3 @@ class UserProfileView(TitleMixin, UpdateView):
         context = super(UserProfileView, self).get_context_data()
         context['baskets'] = Basket.objects.filter(user=self.object)
         return context
-
-
