@@ -1,5 +1,6 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
-
+from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
@@ -23,8 +24,6 @@ class UserRegistrationView(TitleMixin,SuccessMessageMixin, CreateView):
     success_url =  reverse_lazy('users:login')
     title = 'Store - Регистрация'
 
-
-
 class UserProfileView(TitleMixin, UpdateView):
     model = User
     form_class = UserProfileForm
@@ -38,3 +37,7 @@ class UserProfileView(TitleMixin, UpdateView):
         context = super(UserProfileView, self).get_context_data()
         context['baskets'] = Basket.objects.filter(user=self.object)
         return context
+
+class EmailVerificationView(TitleMixin, TemplateView):
+    title = 'Store - Подтверждение электронной почты'
+    model = User
