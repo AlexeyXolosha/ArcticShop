@@ -28,6 +28,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+DOMAIN_NAME = 'http://localhost:8000'
+INSTALLED_APPS = []
+
 # Application definition
 DEFAULT_CHARSET = 'utf-8'
 
@@ -116,9 +119,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
@@ -144,5 +144,4 @@ CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
 
 # Sending emails
-
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
