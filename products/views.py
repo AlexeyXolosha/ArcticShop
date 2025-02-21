@@ -1,10 +1,10 @@
-from django.shortcuts import render, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import HttpResponseRedirect
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 
-from products.models import ProductCategory, Product, Basket
 from common.views import TitleMixin
+from products.models import Basket, Product, ProductCategory
 
 
 class IndexView(TitleMixin,TemplateView):
@@ -16,7 +16,6 @@ class ProductsListView(TitleMixin, ListView):
     template_name = 'products/products.html'
     paginate_by = 2
     title = 'Store - Продукты'
-
 
     def get_queryset(self):
         queryset = super(ProductsListView, self).get_queryset()
