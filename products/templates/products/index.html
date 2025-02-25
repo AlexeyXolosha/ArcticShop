@@ -1,32 +1,50 @@
 {% extends 'products/base.html' %}
 {% load static %}
 
-{% block css %}
-    <link href="{% static 'vendor/css/index.css' %}" rel="stylesheet">
-{% endblock %}
-
 {% block content %}
-    <section>
-        <!--    <div class="alert alert-light text-center" role="alert">-->
-        <!--        Информационное сообщение-->
-        <!--    </div>-->
+    <section class="section">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <h1 class="mt-5">Store</h1>
-                    <p>
-                        Новые образы и лучшие бренды на Store.
-                        Бесплатная доставка по всему миру! Аутлет: до -70% Собственный бренд. -20% новым покупателям.
-                    </p>
-                    <button id="start-purchase-btn" type="button" class="btn btn-lg">
-                        <a id="start-purchase-link" href="{% url 'products:index' %}">
-                            Начать покупки
-                        </a>
-                    </button>
-                </div>
+            <h3 class="section__title">Категории</h3>
+            <div class="category-main-page">
+                <ul class="category-main-page__list">
+                    {% for category in categories|slice:"8" %}
+                        <li class="category-main-page__item">
+                            <a href="{% url 'products:category' category.id %}" class="category-main-page__link">
+                                <div class="category-main-page__card">
+                                    {% if category.image %}
+                                        <img src="{{ category.image.url }}" alt="{{ category.name }}" width="128"
+                                             height="128" class="category-main-page__image">
+                                    {% else %}
+                                        <img src="{% static 'default-category.png' %}" alt="Нет изображения" width="128"
+                                             height="128" class="category-main-page__image">
+                                    {% endif %}
+                                </div>
+                                <div class="category-main-page__name">{{ category.name }}</div>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </section>
+
+    <section class="section">
+        <div class="container">
+            <h3 class="section__title">Бренды</h3>
+            <div class="brand-main-page">
+                <ul class="brand-main-page__list">
+                    {% for brand in brands %}
+                    <li class="brand-main-page__item">
+                        <a href="" class="brand-main-page__link">
+                            <div class="brand-main-page__card">
+                                <img src="{{ brand.logo.url }}" alt="{{ brand.name }}" width="128" height="128" class="brand-main-page__image">
+                            </div>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </section>
+
 {% endblock %}
-
-

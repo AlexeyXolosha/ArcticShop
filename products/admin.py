@@ -1,9 +1,14 @@
 from django.contrib import admin
 
-from products.models import Basket, Product, ProductCategory
+from products.models import Basket, Product, ProductCategory, Brand
 
 # Register your models here.
 admin.site.register(ProductCategory)
+
+@admin.register(Brand)
+class BrandAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):

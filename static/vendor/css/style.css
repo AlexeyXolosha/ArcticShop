@@ -1,0 +1,389 @@
+@charset "UTF-8";
+/**
+  Нормализация блочной модели
+ */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+/**
+  Убираем внутренние отступы слева тегам списков,
+  у которых есть атрибут class
+ */
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+/**
+  Убираем внешние отступы body и двум другим тегам,
+  у которых есть атрибут class
+ */
+body,
+:where(blockquote, figure):where([class]) {
+  margin: 0;
+}
+
+/**
+  Убираем внешние отступы вертикали нужным тегам,
+  у которых есть атрибут class
+ */
+:where(h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  margin-left: 0;
+  padding: 0;
+  border: none;
+}
+
+/**
+  Убираем стандартный маркер маркированному списку,
+  у которого есть атрибут class
+ */
+:where(ul[class]) {
+  list-style: none;
+}
+
+:where(address[class]) {
+  font-style: normal;
+}
+
+/**
+  Обнуляем вертикальные внешние отступы параграфа,
+  объявляем локальную переменную для внешнего отступа вниз,
+  чтобы избежать взаимодействие с более сложным селектором
+ */
+p {
+  --paragraphMarginBottom: 24px;
+  margin-block: 0;
+}
+
+/**
+  Внешний отступ вниз для параграфа без атрибута class,
+  который расположен не последним среди своих соседних элементов
+ */
+p:where(:not([class]):not(:last-child)) {
+  margin-bottom: var(--paragraphMarginBottom);
+}
+
+/**
+  Упрощаем работу с изображениями и видео
+ */
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/**
+  Наследуем свойства шрифт для полей ввода
+ */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+  height: 100%;
+  /**
+    Убираем скачок интерфейса по горизонтали
+    при появлении / исчезновении скроллбара
+   */
+}
+
+/**
+  Плавный скролл
+ */
+html,
+:has(:target) {
+  scroll-behavior: smooth;
+}
+
+body {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+  min-height: 100%;
+  /**
+    Унифицированный интерлиньяж
+   */
+  line-height: 1.5;
+}
+
+/**
+  Нормализация высоты элемента ссылки при его инспектировании в DevTools
+ */
+a:where([class]) {
+  display: inline-flex;
+}
+
+/**
+  Курсор-рука при наведении на элемент
+ */
+button,
+label {
+  cursor: pointer;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+  (за исключением тех, у которых уже указан
+  атрибут fill со значением 'none' или начинается с 'url')
+ */
+:where([fill]:not([fill=none],
+[fill^=url])) {
+  fill: currentColor;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+  (за исключением тех, у которых уже указан
+  атрибут stroke со значением 'none')
+ */
+:where([stroke]:not([stroke=none],
+[stroke^=url])) {
+  stroke: currentColor;
+}
+
+/**
+  Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+ */
+svg * {
+  transition-property: fill, stroke;
+}
+
+/**
+  Приведение рамок таблиц в классический 'collapse' вид
+ */
+:where(table) {
+  border-collapse: collapse;
+  border-color: currentColor;
+}
+
+/**
+  Удаляем все анимации и переходы для людей,
+  которые предпочитают их не использовать
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+@font-face {
+  font-family: "Circe";
+  src: url("../fonts/Circe-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Circe";
+  src: url("../fonts/Circe-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+/*COLORS*/
+/*Animation*/
+/*Container*/
+body {
+  font-family: "Circe";
+  color: #000000;
+  line-height: 1.28;
+}
+
+.section {
+  padding-top: 150px;
+}
+
+.section__title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #000000;
+  text-transform: uppercase;
+}
+
+.container {
+  max-width: 1704px;
+  margin-inline: auto;
+}
+
+.header__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 108px;
+  border-bottom: 1px solid #000000;
+}
+.header__logo {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+.header__logo span {
+  color: #000000;
+}
+.header__list {
+  display: flex;
+  align-items: center;
+  column-gap: 32px;
+}
+.header__link {
+  display: flex;
+  column-gap: 8px;
+  text-decoration: none;
+  color: #000000;
+}
+.header__name-shop {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 1.75px;
+  text-transform: uppercase;
+  text-align: center;
+}
+.header__search-bar {
+  max-width: 800px;
+  width: 100%;
+  position: relative;
+}
+.header__search-bar svg {
+  position: absolute;
+  top: 4px;
+  left: 6px;
+}
+.header__search {
+  border: none;
+  outline: none;
+  width: 100%;
+  border-bottom: 1px solid;
+  padding: 4px 32px;
+  background: transparent;
+}
+
+.header-category {
+  padding: 20px 0;
+}
+.header-category__list {
+  display: flex;
+  justify-content: center;
+  column-gap: 32px;
+}
+.header-category__link {
+  color: #000000;
+  text-decoration: none;
+  transition-duration: 0.3s;
+}
+.header-category__link:hover {
+  color: #008CFF;
+}
+
+.category-main-page {
+  padding: 40px 0 0;
+}
+.category-main-page__list {
+  display: flex;
+  column-gap: 24px;
+}
+.category-main-page__item {
+  transition-duration: 0.3s;
+}
+.category-main-page__item:hover .category-main-page__image {
+  transform: scale(1.03);
+}
+.category-main-page__item:hover .category-main-page__name {
+  color: #008CFF;
+}
+.category-main-page__link {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+}
+.category-main-page__card {
+  border-radius: 12px;
+  background: #EDEDED;
+  padding: 32px;
+  margin-bottom: 20px;
+}
+.category-main-page__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition-duration: 0.3s;
+}
+.category-main-page__name {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  transition-duration: 0.3s;
+  color: #000000;
+}
+
+.brand-main-page {
+  padding: 40px 0 0;
+}
+.brand-main-page__list {
+  display: flex;
+  column-gap: 24px;
+}
+.brand-main-page__item {
+  max-width: 192px;
+  max-height: 192px;
+  width: 100%;
+}
+.brand-main-page__item:hover .brand-main-page__image {
+  transform: scale(1.03);
+}
+.brand-main-page__link {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+}
+.brand-main-page__card {
+  border-radius: 12px;
+  background: #EDEDED;
+  padding: 32px;
+  margin-bottom: 20px;
+}
+.brand-main-page__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition-duration: 0.3s;
+}
+.brand-main-page__name {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  color: #000000;
+}
+
+/*# sourceMappingURL=style.css.map */

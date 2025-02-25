@@ -5,90 +5,90 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="{% static 'vendor/css/style.css' %}" rel="stylesheet">
     <title>{{ title }}</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
     {% block css %} {% endblock %}
 
 </head>
 
 <body>
 
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="{% url 'index' %}">Store</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'products:index' %}">Каталог <i class="fas fa-shopping-bag"></i>
+<header class="header">
+    <div class="header__top">
+        <a href="/" class="header__logo">
+            <span class="header__name-shop">Arctic Shop</span>
+            <span>техника, которой можно доверять!</span>
+        </a>
+        <div class="header__search-bar">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6.48674 5.25469e-09C7.69591 -4.8654e-05 8.88103 0.337848 9.90836 0.975558C10.9357 1.61327 11.7643 2.52541 12.3008 3.60904C12.8372 4.69267 13.0601 5.90466 12.9443 7.10823C12.8284 8.31181 12.3785 9.45905 11.6453 10.4205L15.7477 14.5245C15.9028 14.6802 15.9929 14.889 15.9996 15.1087C16.0063 15.3283 15.9292 15.5423 15.7838 15.7071C15.6385 15.8719 15.4358 15.9753 15.2171 15.9961C14.9983 16.0169 14.7798 15.9537 14.606 15.8193L14.5247 15.7475L10.4205 11.6452C9.60141 12.2698 8.64535 12.6903 7.63144 12.872C6.61754 13.0537 5.57494 12.9914 4.58992 12.6901C3.60489 12.3889 2.70577 11.8574 1.96693 11.1397C1.2281 10.422 0.670807 9.53868 0.341162 8.56283C0.0115182 7.58698 -0.0809972 6.54665 0.0712713 5.52795C0.22354 4.50924 0.616214 3.54143 1.2168 2.70462C1.81739 1.8678 2.60863 1.18602 3.52504 0.715706C4.44145 0.24539 5.45668 5.43643e-05 6.48674 5.25469e-09ZM6.48674 1.72983C5.22505 1.72983 4.01504 2.23102 3.1229 3.12314C2.23075 4.01525 1.72955 5.22522 1.72955 6.48687C1.72955 7.74851 2.23075 8.95849 3.1229 9.8506C4.01504 10.7427 5.22505 11.2439 6.48674 11.2439C7.74843 11.2439 8.95844 10.7427 9.85058 9.8506C10.7427 8.95849 11.2439 7.74851 11.2439 6.48687C11.2439 5.22522 10.7427 4.01525 9.85058 3.12314C8.95844 2.23102 7.74843 1.72983 6.48674 1.72983Z"
+                      fill="#ADADAD"/>
+            </svg>
+            <input type="text" class="header__search" placeholder="Поиск...">
+        </div>
+        <nav class="header__nav">
+            <ul class="header__list">
+                <li class="header__item">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'users:profile' user.id %}" class="header__link">
+                            <span>{{ user.username }}</span>
+                        </a>
+                        <form action="{% url 'users:logout' %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="header__link"
+                                    style="border: none; background: none; padding: 0; cursor: pointer; color: blue; text-decoration: underline;">
+                                Выйти
+                            </button>
+                        </form>
+                    {% else %}
+                        <a href="{% url 'users:login' %}" class="header__link">Войти</a>
+                    {% endif %}
+                </li>
+                <li class="header__item">
+                    <a href="#" class="header__link">
+                        <svg width="24" height="24" viewBox="0 0 27 25" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.125 0H3.23438C4.26562 0 5.20312 0.609375 5.625 1.5H24.8906C26.1094 1.5 27 2.67188 26.6719 3.89062L24.75 11.0156C24.375 12.5156 23.0156 13.5 21.5156 13.5H7.96875L8.25 14.8594C8.34375 15.375 8.8125 15.75 9.32812 15.75H22.875C23.4844 15.75 24 16.2656 24 16.875C24 17.5312 23.4844 18 22.875 18H9.32812C7.73438 18 6.32812 16.875 6.04688 15.2812L3.60938 2.57812C3.5625 2.39062 3.42188 2.25 3.23438 2.25H1.125C0.46875 2.25 0 1.78125 0 1.125C0 0.515625 0.46875 0 1.125 0ZM6.14062 3.75L7.54688 11.25H21.5156C22.0312 11.25 22.4531 10.9219 22.5938 10.4531L24.375 3.75H6.14062ZM8.25 24C7.40625 24 6.70312 23.5781 6.28125 22.875C5.85938 22.2188 5.85938 21.3281 6.28125 20.625C6.70312 19.9688 7.40625 19.5 8.25 19.5C9.04688 19.5 9.75 19.9688 10.1719 20.625C10.5938 21.3281 10.5938 22.2188 10.1719 22.875C9.75 23.5781 9.04688 24 8.25 24ZM24 21.75C24 22.5938 23.5312 23.2969 22.875 23.7188C22.1719 24.1406 21.2812 24.1406 20.625 23.7188C19.9219 23.2969 19.5 22.5938 19.5 21.75C19.5 20.9531 19.9219 20.25 20.625 19.8281C21.2812 19.4062 22.1719 19.4062 22.875 19.8281C23.5312 20.25 24 20.9531 24 21.75Z"
+                                  fill="black"/>
+                        </svg>
+                        <span>Корзина</span>
                     </a>
                 </li>
-                {% if user.is_authenticated %}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-user-circle"></i>
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li>
-                                <a class="dropdown-item" href="{% url 'users:profile' user.id %}">Профиль</a>
-                            </li>
-                            <li><a class="dropdown-item" href="orders/orders.html">Заказы</a></li>
-                            {% if user.is_superuser or user.is_staff %}
-                                <li><a class="dropdown-item" href="{% url 'admin:index' %}">Админ-панель</a></li>
-                            {% endif %}
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li>
-                                <form action="{% url 'users:logout' %}" method="post">
-                                    {% csrf_token %}
-                                    <button type="submit" class="dropdown-item"
-                                            style="border: none; background: none; padding: 0; cursor: pointer;">
-                                        Выйти
-                                    </button>
-                                </form>
-                            </li>
-                        </ul>
-                    </li>
-                {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'users:login' %}">Войти <i class="fas fa-sign-in-alt"></i></a>
-                    </li>
-                {% endif %}
+                <li class="header__item">
+                    <a href="#" class="header__link">
+                        <svg width="24" height="24" viewBox="0 0 24 22" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.5469 20.9844L10.4531 20.8438L2.25 13.25C0.796875 11.8906 0 10.0156 0 8.04688V7.90625C0 4.625 2.34375 1.76562 5.57812 1.15625C7.40625 0.78125 9.28125 1.20312 10.8281 2.28125C11.25 2.5625 11.625 2.9375 12 3.3125C12.1875 3.125 12.375 2.89062 12.6094 2.70312C12.7969 2.5625 12.9844 2.42188 13.1719 2.28125C14.6719 1.20312 16.5469 0.78125 18.375 1.15625C21.6562 1.76562 24 4.625 24 7.90625V8.04688C24 10.0156 23.1562 11.8906 21.7031 13.25L13.5 20.8438L13.4062 20.9844C13.0312 21.3125 12.5156 21.5469 12 21.5469C11.4375 21.5469 10.9688 21.3125 10.5469 20.9844ZM11.2031 5.79688C11.1562 5.79688 11.1562 5.79688 11.1562 5.75L10.3125 4.8125C9.23438 3.59375 7.59375 3.07812 6 3.35938C3.79688 3.78125 2.25 5.70312 2.25 7.90625V8.04688C2.25 9.40625 2.76562 10.6719 3.75 11.5625L12 19.2031L20.2031 11.5625C21.1875 10.6719 21.75 9.40625 21.75 8.04688V7.90625C21.75 5.70312 20.1562 3.78125 17.9531 3.35938C16.3594 3.07812 14.7188 3.59375 13.6406 4.8125L12.7969 5.75C12.7969 5.79688 12.7969 5.79688 12.75 5.84375C12.5625 6.03125 12.2812 6.17188 12 6.17188C11.6719 6.17188 11.3906 6.03125 11.2031 5.84375V5.79688Z"
+                                  fill="black"/>
+                        </svg>
+                        <span>Избранное</span>
+                    </a>
+                </li>
             </ul>
-        </div>
+        </nav>
     </div>
-</nav>
+    <div class="header-category">
+        <ul class="header-category__list">
+            {% for category in categories %}
+                <li class="header-category__item">
+                    <a href="" class="header-category__link">{{ category.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</header>
 
 {% block content %} {% endblock %}
 
 {% block footer %}
 
 {% endblock %}
-
-<!-- Bootstrap core JavaScript -->
-<script src="{% static '/vendor/jquery/jquery.min.js' %}"></script>
-<script src="{% static '/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
-
-<!-- FontAwesome script -->
-<script src="{% static '/vendor/fontawesome/fontawesome-icons.js' %}" crossorigin="anonymous"></script>
 
 </body>
 
