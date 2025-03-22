@@ -2,9 +2,6 @@ from django.db import models
 from users.models import User
 
 
-# Create your models here.
-# models = таблица
-
 class Brand(models.Model):
     name = models.CharField(max_length=128, unique=True)
     logo = models.ImageField(upload_to='brand_logos/', null=True, blank=True)

@@ -12,9 +12,8 @@ class BrandAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price', 'quantity', 'category')
-    fields = ('name', 'description', ('price', 'quantity'), "image", "category")
-    readonly_fields = ('description',)
+    list_display = ('name', 'price', 'quantity', 'category', 'brand')
+    fields = ('name', 'description', ('price', 'quantity'), "image", "category", "brand")  # Добавили brand
     search_fields = ('name',)
     ordering = ('name',)
 

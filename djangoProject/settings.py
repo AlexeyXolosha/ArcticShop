@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     'products',
     'users',
+    'main'
 ]
 
 MIDDLEWARE = [
@@ -153,8 +154,8 @@ CSRF_COOKIE_HTTPONLY = True
 
 # Sending emails
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.yandex.kz'
-# EMAIL_PORT = 465
-# EMAIL_USE_SSL = True
-# EMAIL_HOST_USER = 'arctic-store@yandex.kz'
-# EMAIL_HOST_PASSWORD = 'mflchvgclcvzjelq'
+EMAIL_HOST = 'smtp.yandex.kz'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_HOST_USER = 'arctic-store@yandex.kz'
+EMAIL_HOST_PASSWORD = 'mflchvgclcvzjelq'
