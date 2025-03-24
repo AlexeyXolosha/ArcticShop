@@ -1,0 +1,153 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+    <main class="content">
+        <!--Category-->
+        <section class="section">
+            <div class="container">
+                <h2 class="section__title">Категории</h2>
+                <div class="section__content">
+                    <div class="category">
+                        <ul class="category__list">
+                            {% for category in categories|slice:"8" %}
+                                <li class="category__item">
+                                    <a href="{% url 'products:category' category.id %}" class="category__link">
+                                        <div class="category__card">
+                                            <img src="{{ category.image.url }}" alt="{{ category.name }}" width="128"
+                                                 height="128"
+                                                 class="category__image">
+                                        </div>
+                                        <h3 class="category__title">{{ category.name }}</h3>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <a href="#" class="category__all-link">
+                        <span>
+                            все категории
+                        </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--Banner-->
+        <section class="section">
+            <div class="banner">
+                <div class="container">
+                    <div class="banner__inner">
+                        <div class="banner__preview">
+                            <img src="./image/banner-main-page/headphones.png" alt="" class="banner__image">
+                        </div>
+                        <div class="banner__text">
+                            <h3 class="banner__title">Идеальные наушники для вашего ритма</h3>
+                            <p class="banner__description">Наша коллекция беспроводных наушников JBL TUNE 760BTNC
+                                создана
+                                для тех, кто ценит мощный звук и комфорт. Наслаждайтесь глубокими басами и кристально
+                                чистыми высокими частотами с фирменным звучанием JBL Pure Bass.<br><br>
+                                Благодаря активному шумоподавлению и удобной складной конструкции, эти наушники станут
+                                вашим
+                                идеальным спутником в дороге, на работе и во время отдыха. Длительное время автономной
+                                работы и удобное управление сделают прослушивание музыки еще приятнее.</p>
+                            <button class="banner__button button">Купить сейчас</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--BRANDS-->
+        <section class="section">
+            <div class="container">
+                <h3 class="section__title">Бренды</h3>
+                <div class="section__content">
+                    <div class="brands">
+                        <ul class="brands__list">
+                            {% for brands in brands|slice:"8" %}
+                                <li class="brands__item">
+                                    <a href="#" class="brands__link">
+                                        <img src="{{ brands.logo.url }}" alt="{{ brands.name }}"
+                                             class="brands__image">
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--NEWS-->
+        <section class="section">
+            <div class="container">
+                <h3 class="section__title">Новости</h3>
+                <div class="section__content">
+                    <div class="news">
+                        <ul class="news__list">
+                            {% for news in news|slice:"6" %}
+                                <li class="news__item">
+                                    <div class="news__preview">
+                                        <img src="{{ news.image_preview.url }}" alt="{{ news.title }}" class="news__image">
+                                    </div>
+                                    <div class="news__info">
+                                        <div class="news__date">{{ news.created_at|date:"d/m/Y" }}</div>
+                                        <div class="news__text">{{ news.min_description }}</div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--ADVANTAGES-->
+        <section class="section">
+            <div class="advantages">
+                <div class="container">
+                    <ul class="advantages__list">
+                        <li class="advantages__item">
+                            <div class="advantages__icon advantages__icon--blue">
+                                <img src="./image/advantages/box.svg" alt="" class="advantages__image">
+                            </div>
+                            <div class="advantages__detail">
+                                <h3 class="advantages__title">Бесплатная доставка</h3>
+                                <div class="advantages__subtitle">экономьте на покупках</div>
+                            </div>
+                        </li>
+                        <li class="advantages__item">
+                            <div class="advantages__icon advantages__icon--green">
+                                <img src="./image/advantages/card-tick.svg" alt="" class="advantages__image">
+                            </div>
+                            <div class="advantages__detail">
+                                <h3 class="advantages__title">Безопасные платежи</h3>
+                                <div class="advantages__subtitle">защита на каждом этапе</div>
+                            </div>
+                        </li>
+                        <li class="advantages__item">
+                            <div class="advantages__icon advantages__icon--sea">
+                                <img src="./image/advantages/security-time.svg" alt="" class="advantages__image">
+                            </div>
+                            <div class="advantages__detail">
+                                <h3 class="advantages__title">Поддержка 24/7</h3>
+                                <div class="advantages__subtitle">экономьте на покупках</div>
+                            </div>
+                        </li>
+                        <li class="advantages__item">
+                            <div class="advantages__icon advantages__icon--purple">
+                                <img src="./image/advantages/medal.svg" alt="" class="advantages__image">
+                            </div>
+                            <div class="advantages__detail">
+                                <h3 class="advantages__title">Гарантия качества</h3>
+                                <div class="advantages__subtitle">официальная гарантия</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endblock %}
