@@ -41,13 +41,41 @@ class Product(models.Model):
     category = models.ForeignKey(to=ProductCategory, on_delete=models.CASCADE)
     brand = models.ForeignKey('Brand', on_delete=models.SET_NULL, null=True, blank=True, related_name='products')
 
-
     class Meta:
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
 
     def __str__(self):
         return f'Продукт: {self.name} | Категория {self.category.name}'
+
+
+class FeaturedProduct(models.Model):
+    name = models.CharField(max_length=128, unique=True)
+    products = models.ManyToManyField("Product", related_name="featured_collections")  # Связь многие-ко-многим с продуктами
+
+    class Meta:
+        verbose_name = "Подборка товаров"
+        verbose_name_plural = "Подборки товаров"
+
+    def __str__(self):
+        return f"{self.name} ({self.get_product_count()} товаров)"
+
+    def get_product_count(self):
+        return self.products.count()  # Считает количество связанных товаров
+
+class ProductBanner(models.Model):
+    product = models.ForeignKey(to=Product, on_delete=models.CASCADE, related_name='banners')
+    image = models.ImageField(upload_to='product_banners/')
+    title = models.CharField(max_length=256)
+    description = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Баннер продукта'
+        verbose_name_plural = 'Баннеры продуктов'
+
+    def __str__(self):
+        return f'Баннер для {self.product.name}'
 
 
 class BasketQuerySet(models.query.QuerySet):

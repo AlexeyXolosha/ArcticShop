@@ -3,8 +3,10 @@ from django.db import models
 # Create your models here.
 
 class Advantages(models.Model):
-    name = models.CharField(max_length=128, unique=True)
-    image = models.ImageField(upload_to='advantages/', null=True, blank=True)
+    name = models.CharField(max_length=128)
+    subtitle = models.CharField(max_length=128, null=True, blank=True)
+    image = models.FileField(upload_to='advantages/', null=True, blank=True)
+    color = models.CharField(max_length=7, default="#6a0dad")
 
     class Meta:
         verbose_name = 'Преимущества'

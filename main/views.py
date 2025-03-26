@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from main.models import Advantages, News
-from products.models import ProductCategory, Brand
+from products.models import ProductCategory, ProductBanner,Brand, FeaturedProduct
 from common.views import TitleMixin
 
 # Create your views here.
@@ -15,4 +15,7 @@ class IndexView(TitleMixin, TemplateView):
         context['categories'] = ProductCategory.objects.all()
         context['brands'] = Brand.objects.all()
         context['news'] = News.objects.all()
+        context['advantages'] = Advantages.objects.all()
+        context['banner'] = ProductBanner.objects.all()
+        context['hit'] = FeaturedProduct.objects.filter(name="Хиты продаж").first()
         return context
