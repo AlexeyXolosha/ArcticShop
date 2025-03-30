@@ -1,0 +1,36 @@
+<div class="favorites" id="favoritesDialog">
+    <div class="favorites__container">
+        <div class="favorites__header">
+            <h2 class="favorites__title">Избранное</h2>
+            <div class="favorites__close" id="favorites-close">
+                <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.7363 2.88721L10.1113 8.51221L15.6895 14.0903C16.1582 14.5122 16.1582 15.2153 15.6895 15.6372C15.2676 16.106 14.5645 16.106 14.1426 15.6372L8.51758 10.0591L2.93945 15.6372C2.51758 16.106 1.81445 16.106 1.39258 15.6372C0.923828 15.2153 0.923828 14.5122 1.39258 14.0435L6.9707 8.46533L1.39258 2.88721C0.923828 2.46533 0.923828 1.76221 1.39258 1.29346C1.81445 0.871582 2.51758 0.871582 2.98633 1.29346L8.56445 6.91846L14.1426 1.34033C14.5645 0.871582 15.2676 0.871582 15.7363 1.34033C16.1582 1.76221 16.1582 2.46533 15.7363 2.88721Z"
+                          fill="black"/>
+                </svg>
+            </div>
+        </div>
+        <div class="favorites__content">
+            {% for favorite in favorites %}
+                <div class="favorites__card">
+                    <a href="{{ favorite.product.get_absolute_url }}">
+                        <img src="{{ favorite.product.image.url }}" width="80" height="80"
+                             alt="{{ favorite.product.name }}">
+                    </a>
+                    <div class="favorites__detail">
+                        <a href="{{ favorite.product.get_absolute_url }}" class="favorites__detail-title">
+                            {{ favorite.product.name }}
+                        </a>
+                        <div class="favorites__detail-price">{{ favorite.product.price }} ₸</div>
+                    </div>
+                    <a href="{% url 'products:favorites_remove' favorite.product.id %}" class="favorites__del">
+                        <svg width="17" height="17" viewBox="0 0 17 17" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.7363 2.88721L10.1113 8.51221L15.6895 14.0903C16.1582 14.5122 16.1582 15.2153 15.6895 15.6372C15.2676 16.106 14.5645 16.106 14.1426 15.6372L8.51758 10.0591L2.93945 15.6372C2.51758 16.106 1.81445 16.106 1.39258 15.6372C0.923828 15.2153 0.923828 14.5122 1.39258 14.0435L6.9707 8.46533L1.39258 2.88721C0.923828 2.46533 0.923828 1.76221 1.39258 1.29346C1.81445 0.871582 2.51758 0.871582 2.98633 1.29346L8.56445 6.91846L14.1426 1.34033C14.5645 0.871582 15.2676 0.871582 15.7363 1.34033C16.1582 1.76221 16.1582 2.46533 15.7363 2.88721Z"
+                                  fill="black"/>
+                        </svg>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

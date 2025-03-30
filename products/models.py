@@ -1,4 +1,5 @@
 from django.db import models
+
 from users.models import User
 
 
@@ -12,6 +13,7 @@ class Brand(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class ProductCategory(models.Model):
     name = models.CharField(max_length=128, unique=True)
@@ -51,7 +53,8 @@ class Product(models.Model):
 
 class FeaturedProduct(models.Model):
     name = models.CharField(max_length=128, unique=True)
-    products = models.ManyToManyField("Product", related_name="featured_collections")  # Связь многие-ко-многим с продуктами
+    products = models.ManyToManyField("Product",
+                                      related_name="featured_collections")  # Связь многие-ко-многим с продуктами
 
     class Meta:
         verbose_name = "Подборка товаров"
@@ -61,7 +64,8 @@ class FeaturedProduct(models.Model):
         return f"{self.name} ({self.get_product_count()} товаров)"
 
     def get_product_count(self):
-        return self.products.count()  # Считает количество связанных товаров
+        return self.products.count() 
+
 
 class ProductBanner(models.Model):
     product = models.ForeignKey(to=Product, on_delete=models.CASCADE, related_name='banners')
@@ -76,6 +80,20 @@ class ProductBanner(models.Model):
 
     def __str__(self):
         return f'Баннер для {self.product.name}'
+
+
+class FavoritesProduct(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="favorites")
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="favorited_by")
+    added_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ("user", "product")
+        verbose_name = "Избранный товар"
+        verbose_name_plural = "Избранные товары"
+
+    def __str__(self):
+        return f"{self.user.email} → {self.product.name}"
 
 
 class BasketQuerySet(models.query.QuerySet):

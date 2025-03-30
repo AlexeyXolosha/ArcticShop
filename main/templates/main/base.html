@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="{% static 'vendor/css/main.css' %}" rel="stylesheet">
     <link href="{% static 'vendor/css/all.css' %}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <title>{{ title }}</title>
 
 
@@ -50,7 +50,7 @@
                 <i class="fa-regular fa-regular fa-cart-shopping"></i>
                 <span>Корзина</span>
             </a>
-            <a href="" class="header__favorites">
+            <a id="favorites-open" class="header__favorites">
                 <i class="fa-regular fa-heart"></i>
                 <span>Избранное</span>
             </a>
@@ -60,10 +60,18 @@
 
 {% block content %} {% endblock %}
 
+
+
 {% block footer %}
 
 {% endblock %}
-
+{% include "products/favorites.html" %}
+<script src="{% static 'vendor/js/DialogController.js' %}"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        DialogModal("#favoritesDialog", "#favorites-open", "#favorites-close", "favorites--visible")
+    })
+</script>
 </body>
 
 </html>

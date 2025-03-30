@@ -1,10 +1,13 @@
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404
+from django.http import JsonResponse
+
 from django.shortcuts import HttpResponseRedirect
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 
 from common.views import TitleMixin
-from products.models import Basket, Product, ProductCategory, Brand
+from products.models import Basket, Product, ProductCategory, FavoritesProduct
 
 
 class ProductsListView(TitleMixin, ListView):
@@ -23,6 +26,28 @@ class ProductsListView(TitleMixin, ListView):
         context['category'] = ProductCategory.objects.all()
         return context
 
+
+@login_required
+def favorites_add(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    favorite, created = FavoritesProduct.objects.get_or_create(user=request.user, product=product)
+
+    if not created:
+        favorite.delete()
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+
+@login_required
+def favorites_remove(request, product_id):
+    favorite = FavoritesProduct.objects.filter(user=request.user, product_id=product_id).first()
+
+    if favorite:
+        favorite.delete()
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+
 @login_required
 def basket_add(request, product_id):
     product = Product.objects.get(id=product_id)
@@ -38,6 +63,7 @@ def basket_add(request, product_id):
 
         ### Возвращаем пользователя на ту же страницу где он и был при добавлении товара, или же при его увелечении
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
 
 @login_required
 def basket_remove(request, basket_id):
