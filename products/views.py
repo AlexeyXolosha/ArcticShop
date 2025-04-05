@@ -47,6 +47,14 @@ def favorites_remove(request, product_id):
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
+class BasketView(ListView):
+    model = Basket
+    template_name = 'products/baskets.html'
+    context_object_name = 'baskets'
+
+
+    def get_queryset(self):
+        return Basket.objects.filter(user=self.request.user)
 
 @login_required
 def basket_add(request, product_id):

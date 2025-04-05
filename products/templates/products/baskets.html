@@ -1,43 +1,61 @@
-{% if baskets %}
-    <h4 class="mt-3 mb-3 d-flex justify-content-between align-items-center mb-3">
-        Корзина <span class="badge badge-secondary badge-pill">{{ baskets.total_quantity }}</span>
-    </h4>
-    {% for basket in baskets %}
-        <div class="card mb-3">
-            <div class="card-body">
-                <h5 class="card-title">{{ basket.product.name }}</h5>
-                <p class="card-text">{{ basket.product.description }}</p>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item bg-light">
-                    <div class="row text-center">
-                        <div class="col-lg-4">
-                            <input name="basketID" type="number" class="form-control"
-                                   value="{{ basket.quantity }}" min="0">
-                        </div>
-                        <div class="col-lg-4">{{ basket.sum }} руб.</div>
-                        <div class="col-lg-4">
-                            <a href="{% url 'products:basket_remove' basket.id %}">
-                                <i class="fas fa-trash"></i>
-                            </a>
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="baskets">
+    <div class="container">
+        <h1 class="baskets__title">Корзина</h1>
+        <div class="baskets__content">
+            <div class="baskets__item">
+                <img src="./image/category/iph.png" alt="" width="90" height="90" class="baskets__image">
+                <div class="baskets__info">
+                    <div class="baskets__detail">
+                        <h2 class="baskets__detail-title">Apple iPhone 14 Pro Max 128Gb Deep Purple</h2>
+                        <div class="baskets__detail-bottom">
+                            <div class="baskets__stickers">
+                                Есть в наличии
+                            </div>
+                            <div class="baskets__product-code">Код товара: 625372</div>
                         </div>
                     </div>
-                </li>
-            </ul>
-        </div>
-    {% endfor %}
-    <div class="card mb-3">
-        <div class="card-footer">
-            <p class="float-left">Итого</p>
-            <h4 class="float-right">{{ baskets.total_sum }}</h4>
+                    <div class="baskets__quantity">
+                        <div class="baskets__minus" id="baskets-remove-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                                <path d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z"/>
+                            </svg>
+                        </div>
+                        <input class="baskets__input" type="text" readonly value="1">
+                        <div class="baskets__plus" id="baskets-add-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                                <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="baskets__price">
+                        699 990 ₸
+                    </div>
+                </div>
+            </div>
+            <div class="baskets__form">
+                <div class="baskets__form-header">
+                    <div class="baskets__product-quantity">Товары: 1</div>
+                    <div class="baskets__name">Частное лицо: Карамышев Александр Денисович</div>
+                </div>
+                <div class="baskets__form-center">
+                    <div class="baskets__total">Итого</div>
+                    <div class="baskets__amount">
+                        <span>Сумма</span>
+                        <span>699 990 ₸</span>
+                    </div>
+                </div>
+                <div class="baskets__form-footer">
+                    <button class="baskets__button" type="submit">Подтверждаю заказ</button>
+                </div>
+            </div>
         </div>
     </div>
-    <a class="btn btn-success btn-lg float-right" href="../orders/order-create.html">
-        Оформить заказ
-    </a>
-{% else %}
-    <h4 class="mt-3 mb-3 text-center">
-        Корзина пуста
-    </h4>
-{% endif %}
-
+</div>
+{% endblock %}

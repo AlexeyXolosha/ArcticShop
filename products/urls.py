@@ -1,6 +1,6 @@
 from django.urls import path
 
-from products.views import ProductsListView, basket_add, basket_remove, favorites_add, favorites_remove
+from products.views import ProductsListView, BasketView, basket_add, basket_remove, favorites_add, favorites_remove
 
 app_name = 'products'
 
@@ -10,6 +10,8 @@ urlpatterns = [
 
     path('favorite/add/<int:product_id>/', favorites_add, name='toggle_favorite'),
     path('favorite/remove/<int:product_id>/', favorites_remove, name='favorites_remove'),  # <- добавь этот путь
+
+    path('baskets', BasketView.as_view(), name='baskets'),
 
     path('baskets/add/<int:product_id>/', basket_add, name='basket_add'),
     path('baskets/remove/<int:basket_id>/', basket_remove, name='basket_remove'),
