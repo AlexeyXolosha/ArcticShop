@@ -21,6 +21,8 @@ class IndexView(TitleMixin, TemplateView):
         context['hit'] = FeaturedProduct.objects.filter(name="Хиты продаж").first()
         if self.request.user.is_authenticated:
             context['favorites'] = FavoritesProduct.objects.filter(user=self.request.user)
+            context['favorites_quantity'] = context['favorites'].count()  # Подсчитываем количество
         else:
             context['favorites'] = []
+            context['favorites_quantity'] = 0  # Если пользователь не аутентифицирован, то 0
         return context

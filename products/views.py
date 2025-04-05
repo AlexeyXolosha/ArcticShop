@@ -33,7 +33,10 @@ def favorites_add(request, product_id):
     favorite, created = FavoritesProduct.objects.get_or_create(user=request.user, product=product)
 
     if not created:
-        favorite.delete()
+        favorite.quantity += 1
+        favorite.save()
+    else:
+        pass
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
@@ -47,14 +50,20 @@ def favorites_remove(request, product_id):
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
+
 class BasketView(ListView):
     model = Basket
     template_name = 'products/baskets.html'
     context_object_name = 'baskets'
 
-
     def get_queryset(self):
         return Basket.objects.filter(user=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['favorites'] = FavoritesProduct.objects.filter(user=self.request.user)
+        return context
+
 
 @login_required
 def basket_add(request, product_id):

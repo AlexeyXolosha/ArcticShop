@@ -40,13 +40,13 @@
             </div>
             <a href="{% url 'products:baskets' %}" class="header__cart">
                 <i class="fa-regular fa-regular fa-cart-shopping">
-                    <span class="header__cart-count">1</span>
+                    <span class="header__cart-count">{{ baskets.total_quantity }}</span>
                 </i>
                 <span class="header__cart-title">Корзина</span>
             </a>
             <a id="favorites-open" class="header__favorites">
                 <i class="fa-regular fa-heart">
-                    <span class="header__favorites-count">1</span>
+                    <span class="header__favorites-count">{{ favorites_quantity }}</span>
                 </i>
                 <span class="header__favorites-title">Избранное</span>
             </a>
@@ -55,7 +55,6 @@
 </header>
 
 {% block content %} {% endblock %}
-
 
 
 {% block footer %}

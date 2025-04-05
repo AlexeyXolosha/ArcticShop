@@ -935,7 +935,7 @@ body {
 }
 
 .baskets {
-  padding-top: 150px;
+  padding: 150px 0;
 }
 .baskets__title {
   font-size: 32px;
@@ -948,6 +948,12 @@ body {
   display: flex;
   align-items: start;
   justify-content: space-between;
+}
+.baskets__content-item {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  width: 50%;
 }
 .baskets__item {
   display: flex;
