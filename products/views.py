@@ -10,22 +10,21 @@ from common.views import TitleMixin
 from products.models import Basket, Product, ProductCategory, FavoritesProduct
 
 
-class ProductsListView(TitleMixin, ListView):
+class CatalogViewList(TitleMixin, ListView):
     model = Product
-    template_name = 'products/products.html'
+    template_name = 'products/catalog.html'
     paginate_by = 2
     title = 'Store - Продукты'
 
     def get_queryset(self):
-        queryset = super(ProductsListView, self).get_queryset()
+        queryset = super(CatalogViewList, self).get_queryset()
         category_id = self.kwargs.get('category_id')
         return queryset.filter(category_id=category_id) if category_id else queryset
 
     def get_context_data(self, *, object_list=None, **kwargs):
-        context = super(ProductsListView, self).get_context_data(**kwargs)
+        context = super(CatalogViewList, self).get_context_data(**kwargs)
         context['category'] = ProductCategory.objects.all()
         return context
-
 
 @login_required
 def favorites_add(request, product_id):
@@ -35,11 +34,11 @@ def favorites_add(request, product_id):
     if not created:
         favorite.quantity += 1
         favorite.save()
+        favorite.delete()
     else:
         pass
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
-
 
 @login_required
 def favorites_remove(request, product_id):
@@ -49,7 +48,6 @@ def favorites_remove(request, product_id):
         favorite.delete()
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
-
 
 class BasketView(ListView):
     model = Basket
@@ -62,8 +60,8 @@ class BasketView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['favorites'] = FavoritesProduct.objects.filter(user=self.request.user)
+        context['favorites_quantity'] = context['favorites'].count()  # Подсчитываем количество
         return context
-
 
 @login_required
 def basket_add(request, product_id):
@@ -80,7 +78,6 @@ def basket_add(request, product_id):
 
         ### Возвращаем пользователя на ту же страницу где он и был при добавлении товара, или же при его увелечении
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
-
 
 @login_required
 def basket_remove(request, basket_id):

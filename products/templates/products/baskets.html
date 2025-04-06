@@ -28,7 +28,8 @@
                                             <path d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z"/>
                                         </svg>
                                     </div>
-                                    <input class="baskets__input" type="text" readonly value="{{ basket.quantity }}" min="0">
+                                    <input class="baskets__input" type="text" readonly value="{{ basket.quantity }}"
+                                           min="0">
                                     <div class="baskets__plus" id="baskets-add-item">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                                             <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/>
@@ -38,6 +39,13 @@
                                 <div class="baskets__price">
                                     {{ basket.sum }}
                                 </div>
+                                <a href="{% url 'products:basket_remove' basket.id %}" class="baskets__deleted">
+                                    <svg width="22" height="25" viewBox="0 0 22 25" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7.23901 1.23486C7.47339 0.719238 7.98901 0.391113 8.55151 0.391113H14.2234C14.7859 0.391113 15.3015 0.719238 15.5359 1.23486L15.9109 1.89111H20.4109C21.2078 1.89111 21.9109 2.59424 21.9109 3.39111C21.9109 4.23486 21.2078 4.89111 20.4109 4.89111H2.41089C1.56714 4.89111 0.910889 4.23486 0.910889 3.39111C0.910889 2.59424 1.56714 1.89111 2.41089 1.89111H6.91089L7.23901 1.23486ZM20.4109 6.39111L19.3796 22.2817C19.3328 23.5005 18.3484 24.3911 17.1296 24.3911H5.64526C4.42651 24.3911 3.44214 23.5005 3.39526 22.2817L2.41089 6.39111H20.4109Z"
+                                              fill="black"/>
+                                    </svg>
+                                </a>
                             </div>
                         </div>
                     {% endfor %}

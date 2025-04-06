@@ -1,0 +1,166 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+    <main class="content">
+        <div class="catalog-breadcrumb">
+            <div class="container">
+                <ul class="catalog-breadcrumb__list">
+                    <li class="catalog-breadcrumb__item">
+                        <a href="" class="catalog-breadcrumb__link">Главная /</a>
+                    </li>
+                    <li class="catalog-breadcrumb__item">
+                        <a href="" class="catalog-breadcrumb__link">Каталог /</a>
+                    </li>
+                    <li class="catalog-breadcrumb__item">
+                        <div class="catalog-breadcrumb__endpoint">Смартфоны</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="catalog-info">
+            <div class="container">
+                <h1 class="catalog-info__title">Смартфоны</h1>
+                <p class="catalog-info__description">Добро пожаловать в наш каталог мобильных телефонов! Здесь вы
+                    найдете
+                    широкий выбор современных смартфонов от ведущих мировых производителей. Мы собрали лучшие модели с
+                    мощными
+                    процессорами, качественными камерами и емкими аккумуляторами, чтобы каждый мог выбрать идеальный
+                    телефон
+                    для
+                    себя.
+                </p>
+            </div>
+        </div>
+
+        <div class="catalog-main">
+            <div class="container">
+                <div class="catalog-main__inner">
+                    <div class="catalog-main__top">
+                        <div class="catalog-main__popular">
+                            <ul class="catalog-main__popular-list">
+                                <li class="catalog-main__popular-item">
+                                    <a href="" class="catalog-main__link">Galaxy S23 SERIES</a>
+                                </li>
+                                <li class="catalog-main__popular-item">
+                                    <a href="" class="catalog-main__link">Iphone 15 Series</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="catalog-main__center">
+                        <div class="catalog-main__sidebar">
+                            <div class="catalog-main__sidebar-price">
+                                <div class="catalog-main__sidebar-type">
+                                    <h3 class="catalog-main__type-title">
+                                        Цена от и до
+                                    </h3>
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </div>
+                                <div class="catalog-sidebar__price">
+                                    <div class="catalog-sidebar__left">
+                                        <input type="text" id="min" value="0" class="catalog-price__input">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                            <path d="M0 64C0 46.3 14.3 32 32 32l320 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 96C14.3 96 0 81.7 0 64zM0 192c0-17.7 14.3-32 32-32l160 0 160 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-128 0 0 224c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-224L32 224c-17.7 0-32-14.3-32-32z"/>
+                                            <input type="text" id="min" value="0" class="catalog-price__input">
+                                        </svg>
+                                    </div>
+                                    <div>-</div>
+                                    <div class="catalog-sidebar__right">
+                                        <input type="text" id="max" value="195 000" class="catalog-price__input">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                            <path d="M0 64C0 46.3 14.3 32 32 32l320 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 96C14.3 96 0 81.7 0 64zM0 192c0-17.7 14.3-32 32-32l160 0 160 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-128 0 0 224c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-224L32 224c-17.7 0-32-14.3-32-32z"/>
+                                            <input type="text" id="min" value="0" class="catalog-price__input">
+                                        </svg>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="catalog-sidebar__type-product">
+                                <div class="catalog-main__sidebar-type">
+                                    <h3 class="catalog-main__type-title">
+                                        Бренды
+                                    </h3>
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </div>
+                                <ul class="catalog-type-product__list">
+                                    <li class="catalog-type-product__item">
+                                        <div class="checkbox">
+                                            <input type="checkbox" class="" id="custom" value="">
+                                            <label for="custom" class="custom-label">
+                                                <span class="custom-checkbox"></span>
+                                                <span class="custom-name">Apple</span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="catalog-sidebar__type-product">
+                                <div class="catalog-main__sidebar-type">
+                                    <h3 class="catalog-main__type-title">
+                                        Цвет
+                                    </h3>
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </div>
+                                <ul class="catalog-type-product__list">
+                                    <li class="catalog-type-product__item">
+                                        <div class="checkbox">
+                                            <input type="checkbox" class="" id="color" value="">
+                                            <label for="custom" class="custom-label">
+                                                <span class="custom-checkbox"></span>
+                                                <span class="custom-name">Серый</span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="catalog-sidebar__type-product">
+                                <div class="catalog-main__sidebar-type">
+                                    <h3 class="catalog-main__type-title">
+                                        Цвет
+                                    </h3>
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </div>
+                                <ul class="catalog-type-product__list">
+                                    <li class="catalog-type-product__item">
+                                        <div class="checkbox">
+                                            <input type="checkbox" class="" id="color" value="">
+                                            <label for="custom" class="custom-label">
+                                                <span class="custom-checkbox"></span>
+                                                <span class="custom-name">Серый</span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="catalog-main__product">
+                            <div class="product-section__item">
+                                <a href="">
+                                    <img src="../image/product-item/macbook.png" alt="" class="product-item__image"
+                                         width="192" height="192">
+                                </a>
+                                <a href="" class="product-item__detail">
+                                    <div class="product-item__category">Ноутбуки</div>
+                                    <h3 class="product-item__name">Ноутбук Apple MacBook Air 13 Midnight</h3>
+                                </a>
+                                <div class="product-item__footer">
+                                    <div class="product-item__coast">560 900 ₸</div>
+                                    <a href=""
+                                       class="product-item__basket-add">
+                                        <svg width="19" height="17" viewBox="0 0 19 17" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0 0.75C0 0.34375 0.3125 0 0.75 0H2.15625C3 0 3.71875 0.625 3.875 1.4375L5.03125 7.5H14.3438C14.6875 7.5 14.9688 7.28125 15.0625 6.96875L16.5 1.5625C16.625 1.15625 17.0312 0.9375 17.4375 1.03125C17.8438 1.15625 18.0625 1.5625 17.9688 1.96875L16.5 7.34375C16.25 8.34375 15.3438 9 14.3438 9H5.3125L5.5 9.90625C5.5625 10.25 5.875 10.5 6.21875 10.5H15.25C15.6562 10.5 16 10.8438 16 11.25C16 11.6875 15.6562 12 15.25 12H6.21875C5.15625 12 4.21875 11.25 4.03125 10.1875L2.40625 1.71875C2.375 1.59375 2.28125 1.5 2.15625 1.5H0.75C0.3125 1.5 0 1.1875 0 0.75ZM4 14.5C4 13.9688 4.28125 13.5 4.75 13.2188C5.1875 12.9375 5.78125 12.9375 6.25 13.2188C6.6875 13.5 7 13.9688 7 14.5C7 15.0625 6.6875 15.5312 6.25 15.8125C5.78125 16.0938 5.1875 16.0938 4.75 15.8125C4.28125 15.5312 4 15.0625 4 14.5ZM14.5 13C15.0312 13 15.5 13.3125 15.7812 13.75C16.0625 14.2188 16.0625 14.8125 15.7812 15.25C15.5 15.7188 15.0312 16 14.5 16C13.9375 16 13.4688 15.7188 13.1875 15.25C12.9062 14.8125 12.9062 14.2188 13.1875 13.75C13.4688 13.3125 13.9375 13 14.5 13ZM10.75 1.5V2.75H12C12.4062 2.75 12.75 3.09375 12.75 3.5C12.75 3.9375 12.4062 4.25 12 4.25H10.75V5.5C10.75 5.9375 10.4062 6.25 10 6.25C9.5625 6.25 9.25 5.9375 9.25 5.5V4.25H8C7.5625 4.25 7.25 3.9375 7.25 3.5C7.25 3.09375 7.5625 2.75 8 2.75H9.25V1.5C9.25 1.09375 9.5625 0.75 10 0.75C10.4062 0.75 10.75 1.09375 10.75 1.5Z"
+                                                  fill="#333333"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
