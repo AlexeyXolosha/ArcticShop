@@ -1,0 +1,43 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+    <main class="content">
+        <section class="section-catalog">
+            <div class="container">
+                <div class="catalog-list">
+                    <div class="catalog-list__info">
+                        <h2 class="catalog-list__info-title">Каталог</h2>
+                        <p class="catalog-list__info-description">Добро пожаловать в наш каталог — здесь вы найдёте всё,
+                            что
+                            нужно! Удобная навигация, актуальные предложения и подробные описания помогут быстро выбрать
+                            и
+                            заказать то, что подходит именно вам.<br> Мы постоянно обновляем ассортимент и следим за
+                            качеством,
+                            чтобы покупки были не только выгодными, но и приятными.
+                        </p>
+                    </div>
+
+                    <div class="catalog-list__inner">
+                        <ul class="catalog-list__list">
+                            {% for category in object_list %}
+                                <li class="catalog-list__item">
+                                <a href="{% url 'products:category' category.id %}" class="catalog-list__link">
+                                    <div class="catalog-list__preview">
+                                        <img src="{{ category.image.url }}" alt="{{ category.name }}" class="catalog-list__image">
+                                    </div>
+                                    <div class="catalog-list__detail">
+                                        <h3 class="catalog-list__title">{{ category.name }}</h3>
+                                    </div>
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}
+

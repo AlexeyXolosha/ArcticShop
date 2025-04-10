@@ -17,7 +17,7 @@ class IndexView(TitleMixin, TemplateView):
         context['brands'] = Brand.objects.all()
         context['news'] = News.objects.all()
         context['advantages'] = Advantages.objects.all()
-        context['banner'] = ProductBanner.objects.all()
+        context['product_banners'] = ProductBanner.objects.all().first()
         context['hit'] = FeaturedProduct.objects.filter(name="Хиты продаж").first()
         if self.request.user.is_authenticated:
             context['favorites'] = FavoritesProduct.objects.filter(user=self.request.user)

@@ -20,7 +20,6 @@ class ProductCategory(models.Model):
     description = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='category_images/', null=True, blank=True)
     stock = models.PositiveIntegerField(default=0)
-    brand = models.ForeignKey('Brand', on_delete=models.SET_NULL, null=True, blank=True, related_name='categories')
 
     class Meta:
         verbose_name = 'Категория'
@@ -37,7 +36,7 @@ def __str__(self):
 class Product(models.Model):
     name = models.CharField(max_length=256, unique=True)
     description = models.TextField()
-    price = models.DecimalField(max_digits=6, decimal_places=2)
+    price = models.PositiveIntegerField()
     quantity = models.PositiveIntegerField(default=0)
     image = models.ImageField(upload_to='products_images')
     category = models.ForeignKey(to=ProductCategory, on_delete=models.CASCADE)

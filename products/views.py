@@ -7,7 +7,16 @@ from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 
 from common.views import TitleMixin
-from products.models import Basket, Product, ProductCategory, FavoritesProduct
+from products.models import Basket, Product, ProductCategory, FavoritesProduct, Brand
+
+
+class CatalogListView(TitleMixin, ListView):
+    model = ProductCategory
+    template_name = 'products/catalog-list.html'
+    title = 'Arcitc Shop - Все категории'
+
+    def get_queryset(self):
+        return ProductCategory.objects.all()
 
 
 class CatalogViewList(TitleMixin, ListView):
@@ -23,7 +32,12 @@ class CatalogViewList(TitleMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(CatalogViewList, self).get_context_data(**kwargs)
-        context['category'] = ProductCategory.objects.all()
+        category_id = self.kwargs.get('category_id')
+        category = get_object_or_404(ProductCategory, id=category_id) if category_id else None
+        context['category'] = category
+        context['brands'] = Brand.objects.filter(products__category=category).distinct()
+        context['favorites'] = FavoritesProduct.objects.filter(user=self.request.user)
+        context['favorites_quantity'] = context['favorites'].count()
         return context
 
 @login_required
@@ -40,6 +54,7 @@ def favorites_add(request, product_id):
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
+
 @login_required
 def favorites_remove(request, product_id):
     favorite = FavoritesProduct.objects.filter(user=request.user, product_id=product_id).first()
@@ -48,6 +63,7 @@ def favorites_remove(request, product_id):
         favorite.delete()
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
 
 class BasketView(ListView):
     model = Basket
@@ -62,6 +78,7 @@ class BasketView(ListView):
         context['favorites'] = FavoritesProduct.objects.filter(user=self.request.user)
         context['favorites_quantity'] = context['favorites'].count()  # Подсчитываем количество
         return context
+
 
 @login_required
 def basket_add(request, product_id):
@@ -78,6 +95,7 @@ def basket_add(request, product_id):
 
         ### Возвращаем пользователя на ту же страницу где он и был при добавлении товара, или же при его увелечении
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
 
 @login_required
 def basket_remove(request, basket_id):

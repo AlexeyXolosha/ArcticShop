@@ -1,4 +1,6 @@
 {% extends 'main/base.html' %}
+{% load humanize %}
+
 {% load static %}
 
 {% block content %}
@@ -31,7 +33,7 @@
                                                 <h3 class="product-item__name">{{ productHit.name }} </h3>
                                             </a>
                                             <div class="product-item__footer">
-                                                <div class="product-item__coast">{{ productHit.price }}</div>
+                                                <div class="product-item__coast">{{ productHit.price|intcomma }} ₸</div>
                                                 <a href="{% url 'products:basket_add' productHit.id %}"
                                                    class="product-item__basket-add">
                                                     <svg width="19" height="17" viewBox="0 0 19 17" fill="none"
@@ -71,7 +73,7 @@
                                 </li>
                             {% endfor %}
                         </ul>
-                        <a href="#" class="category__all-link">
+                        <a href="{% url 'products:catalog-list' %}" class="category__all-link">
                         <span>
                             все категории
                         </span>
@@ -82,17 +84,17 @@
         </section>
 
         <!--Banner-->
-        {% if banner %}
+        {% if product_banners %}
             <section class="section">
                 <div class="banner">
                     <div class="container">
                         <div class="banner__inner">
                             <div class="banner__preview">
-                                <img src="./image/banner-main-page/headphones.png" alt="" class="banner__image">
+                                <img src="{{ product_banners.image.url }}" alt="" class="banner__image">
                             </div>
                             <div class="banner__text">
-                                <h3 class="banner__title"></h3>
-                                <p class="banner__description"></p>
+                                <h3 class="banner__title">{{ product_banners.title }}</h3>
+                                <p class="banner__description">{{ product_banners.description }}</p>
                                 <button class="banner__button button">Купить сейчас</button>
                             </div>
                         </div>
