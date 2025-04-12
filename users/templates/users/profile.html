@@ -1,4 +1,4 @@
-{% extends 'products/base.html' %}
+{% extends 'main/base.html' %}
 {% load static %}
 
 {% block css %}
@@ -58,10 +58,14 @@
                     </div>
                 </form>
             </div>
-            <div class="col-lg-5">
-                {% include 'products/baskets_old.html' %}
-            </div>
         </div>
+        <form action="{% url 'users:logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="dropdown-item"
+                    style="border: none; background: none; padding: 0; cursor: pointer;">
+                Выйти
+            </button>
+        </form>
     </div>
 
 {% endblock %}

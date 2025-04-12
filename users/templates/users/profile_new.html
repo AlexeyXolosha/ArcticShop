@@ -1,0 +1,91 @@
+{% extends 'users/base.html' %}
+{% load static %}
+
+{% block content %}
+    <main>
+        <div class="personal-account">
+            <div class="container">
+                <h1 class="title">Личный кабинет</h1>
+                <div class="inner">
+                    <div class="sidebar">
+                        <ul class="sidebar-list">
+                            <li class="sidebar-item">
+                                <a href="" class="sidebar-link sidebar-link-active">
+                                    Личный кабинет
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="" class="sidebar-link">
+                                    Мои заказы
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-button link"
+                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Выйти
+                                </a>
+                                <form id="logout-form" action="{% url 'users:logout' %}" method="post"
+                                      style="display: none;">
+                                    {% csrf_token %}
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="personal-main">
+                        <div class="account-info">
+                            <form action="{% url 'users:profile' user.pk %}" method="post"
+                                  enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="account-info__inner">
+                                    <div class="account-group">
+                                        <label class="user-form__label"
+                                               for="{{ form.first_name.id_for_label }}">Имя</label>
+                                        {{ form.first_name }}
+                                    </div>
+                                    <div class="account-group">
+                                        <label class="user-form__label"
+                                               for="{{ form.last_name.id_for_label }}">Фамилия</label>
+                                        {{ form.last_name }}
+                                    </div>
+                                    <div class="account-group">
+                                        <label class="user-form__label"
+                                               for="{{ form.email.id_for_label }}">Email</label>
+                                        {{ form.email }}
+                                    </div>
+                                </div>
+
+                                <div class="change-password">
+                                    <div class="dropdown">
+                                        <span>Сменить пароль?</span>
+                                        <svg width="22" height="12" viewBox="0 0 22 12" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M11.7969 11.2969C11.3281 11.7188 10.625 11.7188 10.2031 11.2969L1.20312 2.29688C0.734375 1.82813 0.734375 1.125 1.20312 0.703125C1.625 0.234375 2.32812 0.234375 2.75 0.703125L10.9531 8.90625L19.2031 0.703125C19.625 0.234375 20.3281 0.234375 20.75 0.703125C21.2188 1.125 21.2188 1.82812 20.75 2.25L11.7969 11.2969Z"
+                                                  fill="#008CFF"/>
+                                        </svg>
+                                    </div>
+                                    <div class="dropdown__content">
+                                        <div class="account-group">
+                                            <label class="user-form__label"
+                                                   for="{{ form.password1.id_for_label }}"></label>
+                                            {{ form.password1 }}
+                                        </div>
+                                        <div class="account-group">
+                                            <label class="user-form__label"
+                                                   for="{{ form.password2.id_for_label }}"></label>
+                                            {{ form.password2 }}
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="account-save-info">
+                                    <button class="button-account" type="submit">Сохранить</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

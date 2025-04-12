@@ -1,0 +1,168 @@
+.personal-account {
+  padding: 150px 0;
+
+  .title {
+    font-size: 32px;
+    line-height: 120%;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 24px;
+  }
+
+  .inner {
+    display: flex;
+    align-items: start;
+    column-gap: 16px;
+  }
+
+  .sidebar {
+    background: #fff;
+    border-radius: 4px;
+    max-width: 350px;
+    width: 50%;
+
+    padding: 24px;
+
+    &-item {
+      margin-bottom: 8px;
+      display: block;
+      position: relative;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &-link {
+      width: 100%;
+      font-size: 18px;
+      line-height: 120%;
+      font-weight: 700;
+      color: rgba(#333, 0.8);
+      text-decoration: none;
+      transition-duration: 0.3s;
+      display: flex;
+
+      &:hover {
+        color: #008CFF;
+      }
+
+      &-active {
+        font-size: 24px;
+        color: #008CFF;
+        position: relative;
+
+        &:before {
+          content: "";
+          position: absolute;
+          top: -3px;
+          right: 0;
+          width: 2px;
+          height: 100%;
+          background: #008CFF;
+        }
+      }
+    }
+  }
+
+  .personal-main {
+    background: #fff;
+    border-radius: 4px;
+    padding: 24px;
+    width: 100%;
+  }
+}
+
+.sidebar-button.link {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 120%;
+  color: #333;
+
+  text-decoration: none;
+  transition-duration: 0.3s;
+
+  &:hover {
+    color: #008CFF;
+  }
+}
+
+.account-info {
+
+  &__inner {
+    display: flex;
+    column-gap: 16px;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+}
+
+.account-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 350px;
+
+  input {
+    width: 100%;
+  }
+}
+
+.account-save-info {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.button-account {
+  background-color: #008CFF;
+  color: #fff;
+
+  border: none;
+  border-radius: 4px;
+
+
+  height: 48px;
+
+  width: 100%;
+  max-width: 350px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.change-password {
+
+  .dropdown {
+    display: inline-flex;
+    align-items: center;
+    column-gap: 8px;
+    cursor: pointer;
+
+    span {
+      color: #008CFF;
+    }
+
+    svg {
+      color: #008CFF;
+      rotate: -90deg;
+    }
+
+    &-active {
+      svg {
+        rotate: 90deg;
+      }
+    }
+
+    &__content {
+      display: flex;
+      align-items: center;
+      column-gap: 16px;
+
+      &-active {
+
+      }
+    }
+  }
+}

@@ -28,14 +28,16 @@
                     </div>
                     <div class="user-form">
                         <form action="{% url 'users:login' %}" method="post">
+                            {% csrf_token %}
                             <div class="group">
                                 <div class="user-form__group">
-                                    <label for="" class="user-form__label">Email</label>
-                                    <input class="user-form__input" type="text">
+                                    <label for="{{ form.email.id_for_label }}" class="user-form__label">Email</label>
+                                    {{ form.email }}
                                 </div>
                                 <div class="user-form__group">
-                                    <label for="" class="user-form__label">Пароль</label>
-                                    <input class="user-form__input" type="text">
+                                    <label for="{{ form.password.id_for_label }}"
+                                           class="user-form__label">Пароль</label>
+                                    {{ form.password }}
                                 </div>
                                 <div class="user-form__forgot">
                                     <a href="" class="forgot">Забыли пароль?</a>
@@ -43,7 +45,7 @@
                             </div>
                             <div class="user-form__button">
                                 <button class="form-button" type="submit">Войти</button>
-                                <a href="" class="form-button link">Зарегистрировать</a>
+                                <a href="{% url 'users:registration' %}" class="form-button link">Зарегистрировать</a>
                             </div>
                         </form>
                     </div>

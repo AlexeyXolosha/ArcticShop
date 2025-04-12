@@ -34,19 +34,26 @@
             </div>
         </div>
         <div class="header__actions">
-            <div class="header__user">
-                <i class="fa-regular fa-user"></i>
-                <span>Войти</span>
-            </div>
+            {% if user.is_authenticated %}
+                <a href="{% url 'users:profile' user.id %}" class="header__user">
+                    <i class="fa-regular fa-user"></i>
+                    <span>{{ user.first_name }}</span>
+                </a>
+            {% else %}
+                <a href="{% url 'users:login' %}" class="header__user">
+                    <i class="fa-regular fa-user"></i>
+                    <span>Войти</span>
+                </a>
+            {% endif %}
             <a href="{% url 'products:baskets' %}" class="header__cart">
                 <i class="fa-regular fa-regular fa-cart-shopping">
-                    <span class="header__cart-count">{{ baskets.total_quantity }}</span>
+                    <span class="header__cart-count">{{ baskets.total_quantity|default:0 }}</span>
                 </i>
                 <span class="header__cart-title">Корзина</span>
             </a>
             <a id="favorites-open" class="header__favorites">
                 <i class="fa-regular fa-heart">
-                    <span class="header__favorites-count">{{ favorites_quantity }}</span>
+                    <span class="header__favorites-count">{{ favorites_quantity|default:0 }}</span>
                 </i>
                 <span class="header__favorites-title">Избранное</span>
             </a>
@@ -55,7 +62,6 @@
 </header>
 
 {% block content %} {% endblock %}
-
 
 {% block footer %}
 

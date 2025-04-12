@@ -27,15 +27,15 @@ class UserRegistrationView(TitleMixin, SuccessMessageMixin, CreateView):
 class UserProfileView(TitleMixin, UpdateView):
     model = User
     form_class = UserProfileForm
-    template_name = 'users/profile.html'
-    title = 'Store - Личный кабинет'
+    template_name = 'users/profile_new.html'
+    title = 'Arcitc - Личный кабинет'
 
     def get_success_url(self):
         return reverse('users:profile', args=(self.object.id,))
 
 
 class EmailVerificationView(TitleMixin, TemplateView):
-    title = 'Store - Подтверждение электронной почты'
+    title = 'Arctic - Подтверждение электронной почты'
     template_name = 'users/email_verification.html'
 
     def get(self, request, *args, **kwargs):

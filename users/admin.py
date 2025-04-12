@@ -10,7 +10,7 @@ from users.models import EmailVerification, User
 try:
     @admin.register(User)
     class UserAdmin(admin.ModelAdmin):
-        list_display = ('username', 'email')
+        list_display = ('first_name', 'email')
         inlines = (BasketAdmin,)
 except AlreadyRegistered:
     pass
