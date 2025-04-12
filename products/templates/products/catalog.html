@@ -10,13 +10,13 @@
             <div class="container">
                 <ul class="catalog-breadcrumb__list">
                     <li class="catalog-breadcrumb__item">
-                        <a href="" class="catalog-breadcrumb__link">Главная /</a>
+                        <a href="{% url 'index' %}" class="catalog-breadcrumb__link">Главная /</a>
                     </li>
                     <li class="catalog-breadcrumb__item">
-                        <a href="" class="catalog-breadcrumb__link">Каталог /</a>
+                        <a href="{% url 'products:catalog-list' %}" class="catalog-breadcrumb__link">Каталог /</a>
                     </li>
                     <li class="catalog-breadcrumb__item">
-                        <div class="catalog-breadcrumb__endpoint">Смартфоны</div>
+                        <div class="catalog-breadcrumb__endpoint">{{ category.name }}</div>
                     </li>
                 </ul>
             </div>
@@ -78,25 +78,36 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="catalog-sidebar__type-product">
-                                <div class="catalog-main__sidebar-type">
-                                    <h3 class="catalog-main__type-title">
-                                        Бренды
-                                    </h3>
-                                    <i class="fa-solid fa-chevron-down"></i>
+                            <form method="get" action="
+
+
+                                    {% if category %}{% url 'products:category' category.id %}{% else %}{% url 'products:catalog-list' %}{% endif %}"
+                                  id="brand-filter-form">
+                                <div class="catalog-sidebar__type-product">
+                                    <div class="catalog-main__sidebar-type">
+                                        <h3 class="catalog-main__type-title">Бренды</h3>
+                                        <i class="fa-solid fa-chevron-down"></i>
+                                    </div>
+                                    <ul class="catalog-type-product__list">
+                                        {% for brand in brands %}
+                                            <li class="catalog-type-product__item">
+                                                <div class="checkbox">
+                                                    <input type="checkbox"
+                                                           id="brand-{{ brand.id }}"
+                                                           name="brands"
+                                                           value="{{ brand.id }}"
+                                                           {% if brand.id|stringformat:"s" in selected_brands %}checked{% endif %}>
+                                                    <label for="brand-{{ brand.id }}" class="custom-label">
+                                                        <span class="custom-checkbox"></span>
+                                                        <span class="custom-name">{{ brand.name }}</span>
+                                                    </label>
+                                                </div>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
                                 </div>
-                                <ul class="catalog-type-product__list">
-                                    <li class="catalog-type-product__item">
-                                        <div class="checkbox">
-                                            <input type="checkbox" class="" id="custom" value="">
-                                            <label for="custom" class="custom-label">
-                                                <span class="custom-checkbox"></span>
-                                                <span class="custom-name">Apple</span>
-                                            </label>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+                                <button type="submit" style="display: none;">Фильтровать</button>
+                            </form>
                             <div class="catalog-sidebar__type-product">
                                 <div class="catalog-main__sidebar-type">
                                     <h3 class="catalog-main__type-title">
@@ -166,4 +177,16 @@
             </div>
         </div>
     </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('input[name="brands"]').forEach(function (checkbox) {
+                checkbox.addEventListener('change', function () {
+                    document.getElementById('brand-filter-form').submit();
+                });
+            });
+        });
+    </script>
 {% endblock %}
+
+

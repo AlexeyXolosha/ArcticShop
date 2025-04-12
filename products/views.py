@@ -39,22 +39,35 @@ class CatalogViewList(TitleMixin, ListView):
     title = 'Store - Продукты'
 
     def get_queryset(self):
-        queryset = super(CatalogViewList, self).get_queryset()
+        queryset = super().get_queryset()
         category_id = self.kwargs.get('category_id')
-        return queryset.filter(category_id=category_id) if category_id else queryset
+        if category_id:
+            queryset = queryset.filter(category_id=category_id)
+
+        # 💡 Фильтрация по брендам через GET-запрос
+        brand_ids = self.request.GET.getlist('brands')
+        if brand_ids:
+            queryset = queryset.filter(brand_id__in=brand_ids)
+
+        return queryset
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(CatalogViewList, self).get_context_data(**kwargs)
         category_id = self.kwargs.get('category_id')
         category = get_object_or_404(ProductCategory, id=category_id) if category_id else None
+
         context['category'] = category
         context['brands'] = Brand.objects.filter(products__category=category).distinct()
+        context['request'] = self.request
+        context['selected_brands'] = self.request.GET.getlist('brands')
+
         if self.request.user.is_authenticated:
             context['favorites'] = FavoritesProduct.objects.filter(user=self.request.user)
             context['favorites_quantity'] = context['favorites'].count()
         else:
             context['favorites'] = []
             context['favorites_quantity'] = 0
+
         return context
 
 
@@ -119,6 +132,7 @@ def basket_add(request, product_id):
 
         ### Возвращаем пользователя на ту же страницу где он и был при добавлении товара, или же при его увелечении
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
 
 @login_required
 def basket_remove(request, basket_id):
