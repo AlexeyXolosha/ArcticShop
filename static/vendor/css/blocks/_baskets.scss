@@ -1,3 +1,4 @@
+@use "../mixin";
 .baskets {
 
   padding: 150px 0;
@@ -199,5 +200,27 @@
         color: #EB5757;
       }
     }
+  }
+}
+
+.baskets-empty{
+  &__content{
+  @include mixin.flex-center();  // Использование миксина
+    flex-direction: column;
+    padding: 24px 0;
+  }
+
+  &__title{
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 120%;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  &__description{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 120%;
+    color: rgba(#333, 0.7);
   }
 }

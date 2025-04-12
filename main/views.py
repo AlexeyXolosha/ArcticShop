@@ -5,6 +5,7 @@ from products.models import ProductCategory, ProductBanner, Brand, FavoritesProd
 from common.views import TitleMixin
 
 
+
 # Create your views here.
 
 class IndexView(TitleMixin, TemplateView):

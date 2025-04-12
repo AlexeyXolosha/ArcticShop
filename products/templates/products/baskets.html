@@ -1,72 +1,76 @@
 {% extends 'main/base.html' %}
-
 {% load static %}
+
 
 {% block content %}
     <div class="baskets">
         <div class="container">
             <h1 class="baskets__title">Корзина</h1>
-            <div class="baskets__content">
-                <div class="baskets__content-item">
-                    {% for basket in baskets %}
-                        <div class="baskets__item">
-                            <img src="{{ basket.product.image.url }}" alt="" width="90" height="90"
-                                 class="baskets__image">
-                            <div class="baskets__info">
-                                <div class="baskets__detail">
-                                    <h2 class="baskets__detail-title">{{ basket.product.name }}</h2>
-                                    <div class="baskets__detail-bottom">
-                                        <div class="baskets__stickers">
-                                            Есть в наличии
+            {% if baskets %}
+                <div class="baskets__content">
+                    <div class="baskets__content-item">
+                        {% for basket in baskets %}
+                            <div class="baskets__item">
+                                <img src="{{ basket.product.image.url }}" alt="" width="90" height="90"
+                                     class="baskets__image">
+                                <div class="baskets__info">
+                                    <div class="baskets__detail">
+                                        <h2 class="baskets__detail-title">{{ basket.product.name }}</h2>
+                                        <div class="baskets__detail-bottom">
+                                            <div class="baskets__stickers">
+                                                Есть в наличии
+                                            </div>
+                                            <div class="baskets__product-code">Код товара: 625372</div>
                                         </div>
-                                        <div class="baskets__product-code">Код товара: 625372</div>
                                     </div>
-                                </div>
-                                <div class="baskets__quantity">
-                                    <div class="baskets__minus" id="baskets-remove-item">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                                            <path d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z"/>
+                                    <div class="baskets__quantity">
+                                        <div class="baskets__minus" id="baskets-remove-item">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                                <path d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z"/>
+                                            </svg>
+                                        </div>
+                                        <input class="baskets__input" type="text" readonly value="{{ basket.quantity }}"
+                                               min="0">
+                                        <div class="baskets__plus" id="baskets-add-item">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                                <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="baskets__price">
+                                        {{ basket.sum }}
+                                    </div>
+                                    <a href="{% url 'products:basket_remove' basket.id %}" class="baskets__deleted">
+                                        <svg width="22" height="25" viewBox="0 0 22 25" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M7.23901 1.23486C7.47339 0.719238 7.98901 0.391113 8.55151 0.391113H14.2234C14.7859 0.391113 15.3015 0.719238 15.5359 1.23486L15.9109 1.89111H20.4109C21.2078 1.89111 21.9109 2.59424 21.9109 3.39111C21.9109 4.23486 21.2078 4.89111 20.4109 4.89111H2.41089C1.56714 4.89111 0.910889 4.23486 0.910889 3.39111C0.910889 2.59424 1.56714 1.89111 2.41089 1.89111H6.91089L7.23901 1.23486ZM20.4109 6.39111L19.3796 22.2817C19.3328 23.5005 18.3484 24.3911 17.1296 24.3911H5.64526C4.42651 24.3911 3.44214 23.5005 3.39526 22.2817L2.41089 6.39111H20.4109Z"
+                                                  fill="black"/>
                                         </svg>
-                                    </div>
-                                    <input class="baskets__input" type="text" readonly value="{{ basket.quantity }}"
-                                           min="0">
-                                    <div class="baskets__plus" id="baskets-add-item">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                                            <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/>
-                                        </svg>
-                                    </div>
+                                    </a>
                                 </div>
-                                <div class="baskets__price">
-                                    {{ basket.sum }}
-                                </div>
-                                <a href="{% url 'products:basket_remove' basket.id %}" class="baskets__deleted">
-                                    <svg width="22" height="25" viewBox="0 0 22 25" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M7.23901 1.23486C7.47339 0.719238 7.98901 0.391113 8.55151 0.391113H14.2234C14.7859 0.391113 15.3015 0.719238 15.5359 1.23486L15.9109 1.89111H20.4109C21.2078 1.89111 21.9109 2.59424 21.9109 3.39111C21.9109 4.23486 21.2078 4.89111 20.4109 4.89111H2.41089C1.56714 4.89111 0.910889 4.23486 0.910889 3.39111C0.910889 2.59424 1.56714 1.89111 2.41089 1.89111H6.91089L7.23901 1.23486ZM20.4109 6.39111L19.3796 22.2817C19.3328 23.5005 18.3484 24.3911 17.1296 24.3911H5.64526C4.42651 24.3911 3.44214 23.5005 3.39526 22.2817L2.41089 6.39111H20.4109Z"
-                                              fill="black"/>
-                                    </svg>
-                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="baskets__form">
+                        <div class="baskets__form-header">
+                            <div class="baskets__product-quantity">Товары: {{ baskets.count }}</div>
+                            <div class="baskets__name">Частное лицо: Карамышев Александр Денисович</div>
+                        </div>
+                        <div class="baskets__form-center">
+                            <div class="baskets__total">Итого</div>
+                            <div class="baskets__amount">
+                                <span>Сумма</span>
+                                <span>{{ baskets.total_sum }} ₸</span>
                             </div>
                         </div>
-                    {% endfor %}
-                </div>
-                <div class="baskets__form">
-                    <div class="baskets__form-header">
-                        <div class="baskets__product-quantity">Товары: 1</div>
-                        <div class="baskets__name">Частное лицо: Карамышев Александр Денисович</div>
-                    </div>
-                    <div class="baskets__form-center">
-                        <div class="baskets__total">Итого</div>
-                        <div class="baskets__amount">
-                            <span>Сумма</span>
-                            <span>{{ baskets.total_sum }} ₸</span>
+                        <div class="baskets__form-footer">
+                            <button class="baskets__button" type="submit">Подтверждаю заказ</button>
                         </div>
                     </div>
-                    <div class="baskets__form-footer">
-                        <button class="baskets__button" type="submit">Подтверждаю заказ</button>
-                    </div>
                 </div>
-            </div>
+            {% else %}
+                {% include "baskets/baskets-empty.html" %}
+            {% endif %}
         </div>
     </div>
 {% endblock %}

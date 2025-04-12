@@ -2,6 +2,7 @@
 @use "utils";
 @use "fonts";
 @use "globals";
+@use "./mixin";
 
 @use "./blocks/section";
 @use "./blocks/category";
@@ -18,5 +19,6 @@
 
 @use "./pages/catalog";
 @use "./pages/catalog-list";
+@use "./pages/authorization";
 
 

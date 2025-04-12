@@ -16,7 +16,15 @@ class CatalogListView(TitleMixin, ListView):
     title = 'Arcitc Shop - Все категории'
 
     def get_queryset(self):
-        return ProductCategory.objects.all()
+        return ProductCategory.objects.all()  # Возвращаем все категории продуктов
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['favorites'] = FavoritesProduct.objects.filter(user=self.request.user)
+        context['favorites_quantity'] = context['favorites'].count()
+
+        return context
 
 
 class CatalogViewList(TitleMixin, ListView):
