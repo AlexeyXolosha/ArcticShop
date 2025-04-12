@@ -1,0 +1,15 @@
+.section{
+
+  padding-top: 150px;
+
+  &__title{
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 40px;
+    text-transform: uppercase;
+  }
+
+  &__content{
+    padding-top: 40px;
+  }
+}

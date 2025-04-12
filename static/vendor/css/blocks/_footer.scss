@@ -1,0 +1,150 @@
+.footer {
+  background-color: #141414;
+
+  &__top {
+    display: flex;
+    align-items: center;
+    column-gap: 32px;
+    justify-content: space-between;
+    position: relative;
+
+    padding: 68px 0;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 30px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: #ffffff;
+    }
+  }
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &-top {
+      text-align: center;
+
+      span {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 16px;
+        color: #ffffff;
+      }
+    }
+
+    &-bottom {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      row-gap: 8px;
+    }
+  }
+
+  &__name {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 40px;
+    color: #fff;
+  }
+
+  &__email {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 16px;
+
+    i {
+      margin-right: 4px;
+    }
+  }
+
+  &__number {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 16px;
+  }
+
+  &__bottom {
+    padding: 44px 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__copyright {
+    &-text {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 400;
+      color: #fff;
+    }
+  }
+
+  &__policy {
+    display: flex;
+    flex-direction: column;
+
+    a {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 400;
+      color: #fff;
+
+      text-decoration: none;
+      transition-duration: 0.2s;
+
+      &:hover {
+        color: #008CFF;
+      }
+    }
+  }
+
+  &__card {
+    svg {
+      color: #fff;
+    }
+  }
+}
+
+.link {
+  &__list {
+    display: flex;
+    align-items: center;
+    column-gap: 32px;
+  }
+
+  &__title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24px;
+    color: #fff;
+    margin-bottom: 24px;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+
+    a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      transition-duration: 0.2s;
+
+      &:hover {
+        color: #008CFF;
+      }
+    }
+  }
+}

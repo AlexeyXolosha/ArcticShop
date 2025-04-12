@@ -1,0 +1,132 @@
+.favorites {
+  position: absolute;
+  top: 80px;
+  right: 0;
+  width: 25vw;
+  height: 100vh;
+  z-index: 20;
+  display: none;
+
+  &--visible{
+    display: block;
+  }
+
+  &__container {
+    padding: 24px;
+    width: 100%;
+    top: 0;
+    right: 0;
+    position: absolute;
+    height: 100vh;
+    background: #fff;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+
+    svg {
+      cursor: pointer;
+      color: #D9D9D9;
+      transition-duration: 0.2s;
+
+      @media(hover: hover){
+        &:hover{
+          color: #333;
+        }
+      }
+    }
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    color: #333;
+  }
+
+  &__card {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    border: 1px solid #3333;
+    border-radius: 4px;
+    padding: 16px 20px;
+
+    position: relative;
+    cursor: pointer;
+    transition-duration: 0.2s;
+
+    margin-bottom: 8px;
+    
+    @media (hover: hover) {
+      &:hover{
+        border-color: #333;
+      }
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__detail {
+
+    &-title {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 18px;
+      color: #333;
+      max-width: 160px;
+      text-decoration: none;
+      margin-bottom: 4px;
+
+     &:hover{
+       color: #008CFF;
+     }
+    }
+
+    &-price {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 20px;
+    }
+  }
+
+  &__del {
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
+    border: 1px solid #3333;
+    border-radius: 4px;
+    padding: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    svg {
+      color: #3333;
+    }
+    
+    @media (hover: hover) {
+      &:hover{
+        border-color: #333;
+
+        svg{
+          color: #333;
+        }
+      }
+    }
+  }
+}
+
+.favorites__empty-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

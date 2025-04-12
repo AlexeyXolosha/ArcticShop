@@ -1,0 +1,22 @@
+@use 'normalize';
+@use "utils";
+@use "fonts";
+@use "globals";
+
+@use "./blocks/section";
+@use "./blocks/category";
+@use "./blocks/banner";
+@use "./blocks/brands";
+@use "./blocks/news";
+@use "./blocks/advantages";
+@use "./blocks/header";
+@use "./blocks/product-section";
+@use "./blocks/favorites";
+@use "./blocks/footer";
+
+@use "./blocks/baskets";
+
+@use "./pages/catalog";
+@use "./pages/catalog-list";
+
+

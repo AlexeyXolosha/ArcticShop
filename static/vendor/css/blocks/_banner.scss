@@ -1,0 +1,43 @@
+.banner {
+  background: url("../../../image/banner-main-page/bg.png");
+  background-color: #FAFAFA;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 950px;
+
+  padding: 200px 0;
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+  }
+
+  &__text {
+    max-width: 575px;
+  }
+
+  &__title {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 53px;
+    color: #000;
+
+    margin-bottom: 32px;
+  }
+
+  &__description {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-bottom: 40px;
+  }
+
+  &__button {
+    padding: 10px;
+    background-color: #008CFF;
+    color: #fff;
+    border-radius: 4px;
+  }
+}
