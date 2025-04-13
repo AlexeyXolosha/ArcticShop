@@ -1,5 +1,5 @@
 {% extends 'main/base.html' %}
-
+{% load socialaccount %}
 {% block content %}
     <main>
         <div class="login">
@@ -48,6 +48,20 @@
                                 <a href="{% url 'users:registration' %}" class="form-button link">Зарегистрировать</a>
                             </div>
                         </form>
+                    </div>
+                    <div class="auth-via">
+                        <a href="{% provider_login_url 'github' %}" class="auth-via-link">
+                            <span>GitHub</span>
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                        <a href="" class="auth-via-link">
+                            <span>Google</span>
+                            <i class="fa-brands fa-google"></i>
+                        </a>
+                        <a href="" class="auth-via-link">
+                            <span>Яндекс</span>
+                            <i class="fa-brands fa-yandex"></i>
+                        </a>
                     </div>
                 </div>
             </div>

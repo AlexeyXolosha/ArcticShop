@@ -23,6 +23,8 @@ from main.views import IndexView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
+
 
     path('', IndexView.as_view(), name='index'),
     path('products/', include('products.urls', namespace='products')),
