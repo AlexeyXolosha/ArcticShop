@@ -2,7 +2,6 @@
 {% load static %}
 {% load humanize %}
 
-
 {% block content %}
 
     <main class="content">
@@ -34,7 +33,6 @@
             </div>
         </div>
 
-
         <div class="catalog-main">
             <div class="container">
                 <div class="catalog-main__inner">
@@ -52,37 +50,29 @@
                     </div>
                     <div class="catalog-main__center">
                         <div class="catalog-main__sidebar">
-                            <div class="catalog-main__sidebar-price">
-                                <div class="catalog-main__sidebar-type">
-                                    <h3 class="catalog-main__type-title">
-                                        Цена от и до
-                                    </h3>
-                                    <i class="fa-solid fa-chevron-down"></i>
-                                </div>
-                                <div class="catalog-sidebar__price">
-                                    <div class="catalog-sidebar__left">
-                                        <input type="text" id="min" value="0" class="catalog-price__input">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                                            <path d="M0 64C0 46.3 14.3 32 32 32l320 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 96C14.3 96 0 81.7 0 64zM0 192c0-17.7 14.3-32 32-32l160 0 160 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-128 0 0 224c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-224L32 224c-17.7 0-32-14.3-32-32z"/>
-                                            <input type="text" id="min" value="0" class="catalog-price__input">
-                                        </svg>
-                                    </div>
-                                    <div>-</div>
-                                    <div class="catalog-sidebar__right">
-                                        <input type="text" id="max" value="195 000" class="catalog-price__input">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                                            <path d="M0 64C0 46.3 14.3 32 32 32l320 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 96C14.3 96 0 81.7 0 64zM0 192c0-17.7 14.3-32 32-32l160 0 160 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-128 0 0 224c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-224L32 224c-17.7 0-32-14.3-32-32z"/>
-                                            <input type="text" id="min" value="0" class="catalog-price__input">
-                                        </svg>
-
-                                    </div>
-                                </div>
-                            </div>
                             <form method="get" action="
-
-
                                     {% if category %}{% url 'products:category' category.id %}{% else %}{% url 'products:catalog-list' %}{% endif %}"
-                                  id="brand-filter-form">
+                                  id="filter-form">
+                                <div class="catalog-main__sidebar-price">
+                                    <div class="catalog-main__sidebar-type">
+                                        <h3 class="catalog-main__type-title">Цена от и до</h3>
+                                        <i class="fa-solid fa-chevron-down"></i>
+                                    </div>
+                                    <div class="catalog-sidebar__price">
+                                        <div class="catalog-sidebar__left">
+                                            <input type="text" name="min" id="min"
+                                                   value="{{ request.GET.min|default:"0" }}"
+                                                   class="catalog-price__input">
+                                        </div>
+                                        <div>-</div>
+                                        <div class="catalog-sidebar__right">
+                                            <input type="text" name="max" id="max"
+                                                   value="{{ request.GET.max|default:"195000" }}"
+                                                   class="catalog-price__input">
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="catalog-sidebar__type-product">
                                     <div class="catalog-main__sidebar-type">
                                         <h3 class="catalog-main__type-title">Бренды</h3>
@@ -92,9 +82,7 @@
                                         {% for brand in brands %}
                                             <li class="catalog-type-product__item">
                                                 <div class="checkbox">
-                                                    <input type="checkbox"
-                                                           id="brand-{{ brand.id }}"
-                                                           name="brands"
+                                                    <input type="checkbox" id="brand-{{ brand.id }}" name="brands"
                                                            value="{{ brand.id }}"
                                                            {% if brand.id|stringformat:"s" in selected_brands %}checked{% endif %}>
                                                     <label for="brand-{{ brand.id }}" class="custom-label">
@@ -106,47 +94,11 @@
                                         {% endfor %}
                                     </ul>
                                 </div>
+
                                 <button type="submit" style="display: none;">Фильтровать</button>
                             </form>
-                            <div class="catalog-sidebar__type-product">
-                                <div class="catalog-main__sidebar-type">
-                                    <h3 class="catalog-main__type-title">
-                                        Цвет
-                                    </h3>
-                                    <i class="fa-solid fa-chevron-down"></i>
-                                </div>
-                                <ul class="catalog-type-product__list">
-                                    <li class="catalog-type-product__item">
-                                        <div class="checkbox">
-                                            <input type="checkbox" class="" id="color" value="">
-                                            <label for="custom" class="custom-label">
-                                                <span class="custom-checkbox"></span>
-                                                <span class="custom-name">Серый</span>
-                                            </label>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="catalog-sidebar__type-product">
-                                <div class="catalog-main__sidebar-type">
-                                    <h3 class="catalog-main__type-title">
-                                        Цвет
-                                    </h3>
-                                    <i class="fa-solid fa-chevron-down"></i>
-                                </div>
-                                <ul class="catalog-type-product__list">
-                                    <li class="catalog-type-product__item">
-                                        <div class="checkbox">
-                                            <input type="checkbox" class="" id="color" value="">
-                                            <label for="custom" class="custom-label">
-                                                <span class="custom-checkbox"></span>
-                                                <span class="custom-name">Серый</span>
-                                            </label>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
                         </div>
+
                         <div class="catalog-main__product">
                             {% for product in object_list %}
                                 <div class="product-section__item">
@@ -182,11 +134,10 @@
         document.addEventListener('DOMContentLoaded', function () {
             document.querySelectorAll('input[name="brands"]').forEach(function (checkbox) {
                 checkbox.addEventListener('change', function () {
-                    document.getElementById('brand-filter-form').submit();
+                    document.getElementById('filter-form').submit();
                 });
             });
         });
     </script>
+
 {% endblock %}
-
-

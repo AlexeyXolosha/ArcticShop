@@ -24,7 +24,7 @@
     padding: 24px;
 
     &-item {
-      margin-bottom: 8px;
+      margin-bottom: 14px;
       display: block;
       position: relative;
 
@@ -146,19 +146,28 @@
 
     svg {
       color: #008CFF;
-      rotate: -90deg;
+      transform: rotate(-90deg);
+      transition: transform 0.2s ease;
+
+      width: 16px;
+      height: 16px;
     }
 
     &-active {
       svg {
-        rotate: 90deg;
+        transform: rotate(0deg); // поворот при активном состоянии
       }
     }
 
     &__content {
-      display: flex;
+      display: none;
       align-items: center;
       column-gap: 16px;
+
+      &--active {
+        display: flex;
+
+      }
     }
   }
 }

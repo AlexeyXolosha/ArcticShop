@@ -718,8 +718,8 @@ body {
   color: #008CFF;
 }
 
-.favorites__add svg {
-  fill: #EB5757;
+.product-item__top.favorites__add svg {
+  color: #EB5757;
 }
 
 .favorites {
@@ -1158,6 +1158,30 @@ body {
   font-weight: 400;
   line-height: 120%;
   color: rgba(51, 51, 51, 0.7);
+  margin-bottom: 24px;
+}
+.baskets-empty a {
+  padding: 0 16px;
+  height: 50px;
+  width: 100%;
+  max-width: 250px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #008CFF;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  transition-duration: 0.3s;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 120%;
+}
+.baskets-empty a span {
+  margin-right: 8px;
+}
+.baskets-empty a:hover {
+  opacity: 0.8;
 }
 
 .catalog-breadcrumb {
@@ -1390,7 +1414,7 @@ body {
   padding: 24px;
 }
 .personal-account .sidebar-item {
-  margin-bottom: 8px;
+  margin-bottom: 14px;
   display: block;
   position: relative;
 }
@@ -1490,15 +1514,21 @@ body {
 }
 .change-password .dropdown svg {
   color: #008CFF;
-  rotate: -90deg;
+  transform: rotate(-90deg);
+  transition: transform 0.2s ease;
+  width: 16px;
+  height: 16px;
 }
 .change-password .dropdown-active svg {
-  rotate: 90deg;
+  transform: rotate(0deg);
 }
 .change-password .dropdown__content {
-  display: flex;
+  display: none;
   align-items: center;
   column-gap: 16px;
+}
+.change-password .dropdown__content--active {
+  display: flex;
 }
 
 .catalog-list {

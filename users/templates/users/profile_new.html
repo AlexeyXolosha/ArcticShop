@@ -55,7 +55,7 @@
                                 </div>
 
                                 <div class="change-password">
-                                    <div class="dropdown">
+                                    <div class="dropdown" id="dropdown-profile">
                                         <span>Сменить пароль?</span>
                                         <svg width="22" height="12" viewBox="0 0 22 12" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
@@ -63,7 +63,7 @@
                                                   fill="#008CFF"/>
                                         </svg>
                                     </div>
-                                    <div class="dropdown__content">
+                                    <div class="dropdown__content" id="dropdown-profile-content">
                                         <div class="account-group">
                                             <label class="user-form__label"
                                                    for="{{ form.password1.id_for_label }}"></label>
@@ -88,4 +88,6 @@
             </div>
         </div>
     </main>
+
+     <script src="{% static 'vendor/js/profile-controller.js' %}"></script>
 {% endblock %}

@@ -18,6 +18,10 @@
             <h2 class="baskets-empty__title">Корзина пуста</h2>
             <p class="baskets-empty__description">Ваша корзина пока пуста. Добавьте товары, чтобы оформить
                 заказ.</p>
+            <a href="{% url 'products:catalog-list' %}">
+                <span>Каталог</span>
+                <i class="fa-light fa-arrow-right"></i>
+            </a>
         </div>
     </div>
 {% endblock %}
