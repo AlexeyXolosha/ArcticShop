@@ -1,4 +1,17 @@
+# Для всех .js файлов в проекте
 *.js linguist-language=JavaScript
+
+# Для всех .css файлов в проекте
 *.css linguist-language=CSS
+
+# Для всех .html файлов в проекте
 *.html linguist-language=HTML
+
+# Для всех .jsx файлов в проекте
+*.jsx linguist-language=JavaScript
+
+# Для всех .ts файлов в проекте
+*.ts linguist-language=TypeScript
+
+# Для всех .scss файлов в проекте
 *.scss linguist-language=CSS
