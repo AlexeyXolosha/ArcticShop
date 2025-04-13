@@ -1647,6 +1647,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-bottom: 32px;
 }
 .user-form .user-form__forgot {
   display: flex;
@@ -1678,7 +1679,6 @@ body {
   height: 56px;
   padding: 16px 16px;
   width: 100%;
-  max-width: 675px;
   border: 1px solid #000;
   background: #000;
   color: #fff;
@@ -1705,9 +1705,39 @@ body {
   background: #fff;
   border-radius: 4px;
   padding: 50px 40px;
-  max-width: 60%;
+  max-width: 55%;
   width: 100%;
   margin-inline: auto;
+  position: relative;
+}
+
+.auth-via {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 64px;
+}
+
+.auth-via-link {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  text-decoration: none;
+  transition-duration: 0.3s;
+  color: #333;
+}
+.auth-via-link span {
+  font-size: 18px;
+  line-height: 120%;
+}
+.auth-via-link i {
+  font-size: 36px;
+  line-height: 120%;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+.auth-via-link:hover {
+  color: #008CFF;
 }
 
 /*# sourceMappingURL=main.css.map */

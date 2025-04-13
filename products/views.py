@@ -53,7 +53,7 @@ class CatalogViewList(TitleMixin, ListView):
 
         # Фильтрация по цене
         min_price = self.request.GET.get('min', 0)  # По умолчанию 0
-        max_price = self.request.GET.get('max', 195000)  # По умолчанию 195000
+        max_price = self.request.GET.get('max', 1925000)  # По умолчанию 195000
 
         # Проверяем, если min и max цены - это строки, применяем replace и преобразуем в int
         try:
