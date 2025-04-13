@@ -56,7 +56,7 @@
                         <div class="baskets__form">
                             <div class="baskets__form-header">
                                 <div class="baskets__product-quantity">Товары: {{ baskets.count }}</div>
-                                <div class="baskets__name">Частное лицо: Карамышев Александр Денисович</div>
+                                <div class="baskets__name">Частное лицо: {{ user.first_name }} {{  user.last_name }}</div>
                             </div>
                             <div class="baskets__form-center">
                                 <div class="baskets__total">Итого</div>
