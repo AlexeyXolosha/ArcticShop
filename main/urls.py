@@ -1,5 +1,5 @@
 from django.urls import path, include
-from views import IndexView
+from .views import IndexView
 
 app_name = 'main'
 

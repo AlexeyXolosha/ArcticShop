@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 
     'main',
     'products',
+    'orders',
     'users',
 ]
 
@@ -171,7 +172,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # All Auth
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_LOGIN_METHODS = {'email'}
 ACCOUNT_EMAIL_REQUIRED = True
 
 

@@ -1,5 +1,6 @@
 {% extends 'main/base.html' %}
 {% load static %}
+{% load humanize %}
 
 
 {% block content %}
@@ -40,7 +41,7 @@
                                             </div>
                                         </div>
                                         <div class="baskets__price">
-                                            {{ basket.sum }}
+                                            {{ basket.sum|intcomma }} ₸
                                         </div>
                                         <a href="{% url 'products:basket_remove' basket.id %}" class="baskets__deleted">
                                             <svg width="22" height="25" viewBox="0 0 22 25" fill="none"
@@ -62,11 +63,11 @@
                                 <div class="baskets__total">Итого</div>
                                 <div class="baskets__amount">
                                     <span>Сумма</span>
-                                    <span>{{ baskets.total_sum }} ₸</span>
+                                    <span>{{ baskets.total_sum|intcomma}} ₸</span>
                                 </div>
                             </div>
                             <div class="baskets__form-footer">
-                                <button class="baskets__button" type="submit">Подтверждаю заказ</button>
+                                <a  href="{% url 'orders:order_create' %}" class="baskets__button" type="submit">Подтверждаю заказ</a>
                             </div>
                         </div>
                     </div>
